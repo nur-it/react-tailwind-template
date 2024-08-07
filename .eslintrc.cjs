@@ -19,14 +19,7 @@ module.exports = {
 	plugins: ['react-refresh'],
 	rules: {
 		'react/jsx-no-target-blank': 'off',
-		'react-refresh/only-export-components': [
-			'warn',
-			{ allowConstantExport: true },
-		],
-		'react-refresh/only-export-components': [
-			'warn',
-			{ allowConstantExport: true },
-		],
+
 		// 'react/jsx-indent': ['error', 2],
 		// 'react/jsx-indent-props': ['error', 2],
 		'react/jsx-tag-spacing': ['error', { beforeSelfClosing: 'always' }],
@@ -40,4 +33,4 @@ module.exports = {
 		'no-prototype-builtins': 'off',
 		'no-useless-constructor': 'off',
 	},
-}
+};
