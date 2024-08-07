@@ -3,14 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/brunocotrim/react-boilerplate#readme",
-  "repository": "https://github.com/brunocotrim/react-boilerplate.git",
+  "homepage": "https://github.com/nur-it/react-tailwind-boilerplate#readme",
+  "repository": "https://github.com/nur-it/react-tailwind-boilerplate.git",
   "author": "NurIt Ltd <https://www.nurit.io>",
   "license": "MIT",
   "description": "Boilerplate for React projects",
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "dev": "vite --open",
@@ -37,6 +36,7 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
+    "husky": "^9.1.4",
     "lint-staged": "^15.2.8",
     "postcss": "^8.4.41",
     "prettier": "^3.3.3",
@@ -53,8 +53,21 @@
   },
   "lint-staged": {
     "*": [
-      "eslint --fix",
+      "eslint --cache --fix",
       "prettier --ignore-unknown --write"
     ]
-  }
+  },
+  "keywords": [
+    "lint",
+    "git",
+    "staged",
+    "eslint",
+    "prettier",
+    "stylelint",
+    "code",
+    "quality",
+    "check",
+    "format",
+    "validate"
+  ]
 }

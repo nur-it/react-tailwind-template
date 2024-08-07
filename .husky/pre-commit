@@ -1,0 +1,2 @@
+node bin/lint-staged.js
+git update-index --again

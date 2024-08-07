@@ -1,25 +1,24 @@
 /** @type {import('prettier').RequiredOptions} */
 
 export default {
-  trailingComma: "all",
+  trailingComma: 'all',
   tabWidth: 2,
-  printWidth: 100,
-  useTabs: false,
+  printWidth: 80,
+  useTabs: true,
   semi: false,
   singleQuote: true,
-  quoteProps: "as-needed",
+  quoteProps: 'as-needed',
   bracketSpacing: true,
-  arrowParens: "avoid",
-  jsxBracketSameLine: false,
-  endOfLine: "auto",
+  arrowParens: 'avoid',
+  endOfLine: 'auto',
   overrides: [
     {
-      files: ".prettierrc",
+      files: '.prettierrc',
       options: {
-        parser: "json",
+        parser: 'json',
       },
     },
   ],
-  tailwindConfig: "./tailwind.config.js",
-  plugins: ["prettier-plugin-tailwindcss"],
-};
+  tailwindConfig: './tailwind.config.js',
+  plugins: ['prettier-plugin-tailwindcss'],
+}
