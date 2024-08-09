@@ -1,74 +1,36 @@
 {
-  "name": "react-boilerplate",
+  "name": "react-tailwind-starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/nur-it/react-tailwind-boilerplate#readme",
-  "repository": "https://github.com/nur-it/react-tailwind-boilerplate.git",
-  "author": "NurIt Ltd <https://www.nurit.io>",
-  "license": "MIT",
-  "description": "Boilerplate for React projects",
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "preview": "vite preview",
-    "postinstall": "npx simple-git-hooks"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.51.23",
+    "@tanstack/react-query-devtools": "^5.51.23",
+    "axios": "^1.7.3",
     "js-cookie": "^3.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@svgr/plugin-svgo": "^8.1.0",
+    "@eslint/js": "^9.8.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-react-refresh": "^0.4.7",
-    "husky": "^9.1.4",
-    "lint-staged": "^15.2.8",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
     "postcss": "^8.4.41",
-    "prettier": "^3.3.3",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "simple-git-hooks": "^2.11.1",
-    "tailwindcss": "^3.4.7",
-    "vite": "^5.3.4",
-    "vite-plugin-pages": "^0.32.3",
-    "vite-plugin-svgr": "^4.2.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx commitlint --edit"
-  },
-  "lint-staged": {
-    "*": [
-      "eslint --cache --fix",
-      "prettier --ignore-unknown --write"
-    ]
-  },
-  "keywords": [
-    "lint",
-    "git",
-    "staged",
-    "eslint",
-    "prettier",
-    "stylelint",
-    "code",
-    "quality",
-    "check",
-    "format",
-    "validate"
-  ]
+    "tailwindcss": "^3.4.9",
+    "vite": "^5.4.0"
+  }
 }
