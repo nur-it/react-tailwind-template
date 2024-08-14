@@ -1,27 +1,19 @@
-import { QueryClient } from "@tanstack/react-query";
 import { createBrowserRouter } from "react-router-dom";
 // internal imports
-import Contact from "../pages/Contact";
+import RootLayout from "../layouts/RootLayout";
+import DashBoard from "../pages/DashBoard";
 import ErrorPage from "../pages/ErrorPage";
-import HomePage from "../pages/Home";
-import SinglePost from "../pages/SinglePost";
-
-const queryClient = new QueryClient();
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: <RootLayout />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/post/:postId",
-    element: <SinglePost />,
-    action: queryClient,
-  },
-  {
-    path: "/contacts",
-    element: <Contact />,
-    action: queryClient,
+    children: [
+      {
+        path: "/",
+        element: <DashBoard />,
+      },
+    ],
   },
 ]);

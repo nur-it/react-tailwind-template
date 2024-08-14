@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 // internal imports
 import CookieProvider from "./contexts/CookieContext";
-import Layout from "./layouts";
+import { SidebarProvider } from "./contexts/SidebarContext";
 import { router } from "./routes";
 import "./styles/index.css";
 
@@ -15,9 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={false} />
     <CookieProvider>
-      <Layout>
+      <SidebarProvider>
         <RouterProvider router={router} />
-      </Layout>
+      </SidebarProvider>
     </CookieProvider>
   </QueryClientProvider>
 );
