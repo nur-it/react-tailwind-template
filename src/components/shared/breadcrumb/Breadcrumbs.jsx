@@ -10,7 +10,7 @@ const Breadcrumbs = ({ pageName }) => {
       <nav>
         <ul className="flex items-center gap-2">
           <li>
-            <Link className="font-medium text-secondary" href="index.html">
+            <Link className="font-medium text-secondary" to={"/"}>
               Dashboard /
             </Link>
           </li>
