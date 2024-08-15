@@ -51,8 +51,6 @@ const SignUp = () => {
                         icon={<FiUser />}
                         label={"Name"}
                         name={"name"}
-                        value={""}
-                        handleChange={() => {}}
                         placeholder={"Enter your full name"}
                       />
                     </div>
@@ -66,8 +64,6 @@ const SignUp = () => {
                         icon={<FiMail />}
                         label={"Email"}
                         name={"email"}
-                        value={""}
-                        handleChange={() => {}}
                         placeholder={"Enter your email"}
                       />
                     </div>

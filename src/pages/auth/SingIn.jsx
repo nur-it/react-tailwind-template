@@ -6,8 +6,11 @@ import { FiLock, FiLogIn, FiMail } from "react-icons/fi";
 import signInSvg from "../../assets/images/illustration-03.svg";
 import logoDark from "../../assets/images/logo-dark.svg";
 import InputTextWithIcon from "../../components/common/InputTextWithIcon";
+import useAuth from "../../hooks/useAuth";
 
 const SingIn = () => {
+  const { register, handleSubmit, handleSignInSubmit, errors } = useAuth();
+
   return (
     <>
       <Helmet>
@@ -44,35 +47,46 @@ const SingIn = () => {
                   Sign In to Admin
                 </h2>
 
-                <form>
+                <form onSubmit={handleSubmit(handleSignInSubmit)}>
                   <div className="mb-4">
                     <InputTextWithIcon
+                      required
+                      errors={errors}
+                      minLength={8}
+                      pattern={
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i
+                      }
                       id={"email"}
                       icon={<FiMail />}
                       label={"Email"}
                       name={"email"}
-                      value={""}
-                      handleChange={() => {}}
+                      register={register}
                       placeholder={"Enter your email"}
                     />
                   </div>
 
                   <div className="mb-4">
                     <InputTextWithIcon
+                      required
+                      errors={errors}
+                      minLength={8}
+                      maxLength={50}
+                      pattern={
+                        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/i
+                      }
+                      register={register}
                       id={"password"}
                       icon={<FiLock />}
                       label={"Password"}
                       name={"password"}
-                      value={""}
                       type={"password"}
-                      handleChange={() => {}}
                       placeholder={"6+ Characters, 1 Capital letter"}
                     />
                   </div>
 
                   <div className="mb-5">
                     <button
-                      type="button"
+                      type="submit"
                       className="flex justify-center items-center gap-2 w-full rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
                     >
                       <FiLogIn className="text-xl" />
