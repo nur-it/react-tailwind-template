@@ -9,16 +9,16 @@ const InputTextWithIcon = ({
   type,
   errors,
   pattern,
-  minLength,
-  maxLength,
   required,
   register,
+  minLength,
+  maxLength,
   placeholder,
 }) => {
   const [isShowPassword, setIsShowPassword] = useState(type);
 
   const validation = {
-    pattern: pattern,
+    pattern: { value: pattern },
     minLength: minLength,
     maxLength: maxLength,
     required: required ? required : false,

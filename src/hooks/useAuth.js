@@ -4,6 +4,7 @@ const useAuth = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -20,6 +21,7 @@ const useAuth = () => {
   };
 
   return {
+    watch,
     errors,
     register,
     handleSubmit,
