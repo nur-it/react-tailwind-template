@@ -5,8 +5,11 @@ import { FiLock, FiLogIn, FiMail, FiUser } from "react-icons/fi";
 import signInSvg from "../../assets/images/illustration-03.svg";
 import logoDark from "../../assets/images/logo-dark.svg";
 import InputTextWithIcon from "../../components/common/InputTextWithIcon";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
+  const { register, handleSubmit, handleSignUpSubmit, errors } = useAuth();
+
   return (
     <>
       <Helmet>
@@ -32,25 +35,29 @@ const SignUp = () => {
                 </span>
               </div>
             </div>
-            {/* sign up fo
-            rm  */}
+
+            {/* sign up form  */}
             <div className="w-full border-stroke  xl:w-1/2 xl:border-l-2">
               <div className="w-full p-4 md:p-12 xl:p-16">
                 <span className="mb-1.5 block font-medium text-secondary">
                   Start for free
                 </span>
+
                 <h2 className="mb-9 text-2xl font-bold text-black md:text-[32px]">
                   Sign Up to TailAdmin
                 </h2>
 
-                <form>
+                <form onSubmit={handleSubmit(handleSignUpSubmit)}>
                   <div className="mb-4">
                     <div className="mb-4">
                       <InputTextWithIcon
+                        required
                         id={"name"}
-                        icon={<FiUser />}
-                        label={"Name"}
                         name={"name"}
+                        label={"Name"}
+                        errors={errors}
+                        icon={<FiUser />}
+                        register={register}
                         placeholder={"Enter your full name"}
                       />
                     </div>
@@ -59,11 +66,14 @@ const SignUp = () => {
                   <div className="mb-4">
                     <div className="mb-4">
                       <InputTextWithIcon
+                        required
                         id={"email"}
                         type={"email"}
-                        icon={<FiMail />}
                         label={"Email"}
                         name={"email"}
+                        errors={errors}
+                        icon={<FiMail />}
+                        register={register}
                         placeholder={"Enter your email"}
                       />
                     </div>
@@ -71,33 +81,35 @@ const SignUp = () => {
 
                   <div className="mb-4">
                     <InputTextWithIcon
+                      required
                       id={"password"}
+                      errors={errors}
                       icon={<FiLock />}
                       label={"Password"}
                       name={"password"}
-                      value={""}
                       type={"password"}
-                      handleChange={() => {}}
-                      placeholder={"6+ Characters, 1 Capital letter"}
+                      register={register}
+                      placeholder={"8 Characters, 1 Capital letter"}
                     />
                   </div>
 
                   <div className="mb-6">
                     <InputTextWithIcon
-                      id={"password"}
+                      required
+                      id={"re-type-password"}
                       icon={<FiLock />}
-                      label={"Re-type Password"}
-                      name={"password"}
-                      value={""}
+                      name={"re-type-password"}
                       type={"password"}
-                      handleChange={() => {}}
+                      errors={errors}
+                      register={register}
+                      label={"Re-type Password"}
                       placeholder={"Re-enter your password"}
                     />
                   </div>
 
                   <div className="mb-5">
                     <button
-                      type="button"
+                      type="submit"
                       className="w-full flex justify-center items-center gap-2 rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
                     >
                       <FiLogIn className="text-xl" />
