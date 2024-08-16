@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NotificationDropDown = () => {
   // handle click
   const handleClick = (event) => {
@@ -11,9 +13,12 @@ const NotificationDropDown = () => {
       className="select-none absolute top-8 -right-28 lg:-right-24 mt-2.5 flex h-96 w-72 flex-col rounded-sm border border-stroke bg-white shadow-md md:right-0 md:w-80"
     >
       <div className="px-4 py-3">
-        <h5 className="text-sm font-medium text-[0.875rem] text-secondary">
+        <Link
+          to="#"
+          className="text-sm font-medium text-[0.875rem] text-secondary"
+        >
           Notification
-        </h5>
+        </Link>
       </div>
 
       <ul className="flex h-auto flex-col overflow-y-auto">
