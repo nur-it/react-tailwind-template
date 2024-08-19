@@ -1,14 +1,26 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 // internal imports
-import { FiLock, FiLogIn, FiMail, FiUser } from "react-icons/fi";
+import { useState } from "react";
+import {
+  FiEye,
+  FiEyeOff,
+  FiLock,
+  FiLogIn,
+  FiMail,
+  FiUser,
+} from "react-icons/fi";
 import signInSvg from "../../assets/images/illustration-03.svg";
 import logoDark from "../../assets/images/logo-dark.svg";
 import InputTextWithIcon from "../../components/common/InputTextWithIcon";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
-  const { register, handleSubmit, handleSignUpSubmit, errors } = useAuth();
+  const { register, handleSubmit, handleSignUpSubmit, errors, watch } =
+    useAuth();
+
+  // react hook
+  const [isShowPassword, setIsShowPassword] = useState(true);
 
   return (
     <>
@@ -83,6 +95,9 @@ const SignUp = () => {
                     <InputTextWithIcon
                       required
                       id={"password"}
+                      pattern={
+                        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+                      }
                       errors={errors}
                       icon={<FiLock />}
                       label={"Password"}
@@ -94,17 +109,64 @@ const SignUp = () => {
                   </div>
 
                   <div className="mb-6">
-                    <InputTextWithIcon
-                      required
-                      id={"re-type-password"}
-                      icon={<FiLock />}
-                      name={"re-type-password"}
-                      type={"password"}
-                      errors={errors}
-                      register={register}
-                      label={"Re-type Password"}
-                      placeholder={"Re-enter your password"}
-                    />
+                    <label
+                      className="mb-2.5 block font-medium text-black"
+                      htmlFor="confirmPassword"
+                    >
+                      Confirm Password
+                    </label>
+
+                    <div className="relative">
+                      <span className="absolute left-4 top-4">
+                        <FiLock
+                          className={`text-md ${
+                            errors?.confirmPassword?.type === "required" ||
+                            errors?.confirmPassword?.type === "validate"
+                              ? "text-red-400"
+                              : ""
+                          }`}
+                        />
+                      </span>
+
+                      <input
+                        {...register("confirmPassword", {
+                          required: "Please confirm your password",
+                          validate: (value) =>
+                            value === watch("password") ||
+                            "Passwords do not match",
+                        })}
+                        type={isShowPassword ? "password" : "text"}
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm Password"
+                        className={`w-full py-3 pl-12 pr-4 font-medium text-black rounded border ${
+                          errors?.confirmPassword?.type === "required" ||
+                          errors?.confirmPassword?.type === "validate"
+                            ? "focus:border-red-400 border-red-400"
+                            : "focus:border-primary border-stroke"
+                        }  border-stroke focus-visible:outline-none`}
+                      />
+
+                      <button
+                        type="button"
+                        className={`absolute right-4 top-4 ${
+                          errors?.confirmPassword?.type === "required" ||
+                          errors?.confirmPassword?.type === "validate"
+                            ? "text-red-400"
+                            : ""
+                        }`}
+                        onClick={() => setIsShowPassword(!isShowPassword)}
+                      >
+                        {isShowPassword ? <FiEyeOff /> : <FiEye />}
+                      </button>
+
+                      {(errors?.confirmPassword?.type === "required" ||
+                        errors?.confirmPassword?.type === "validate") && (
+                        <p className="text-red-400 mt-1">
+                          {errors?.confirmPassword?.message}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   <div className="mb-5">
