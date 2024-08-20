@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import React from "react";
 import cn from "../../lib/cn";
 
-const badgeStyles = cva("py-1 px-2.5 border-none rounded text-xl font-medium", {
+const badgeStyles = cva("border-none rounded font-medium", {
   variants: {
     color: {
       primary: "bg-primary text-white",
@@ -12,15 +12,27 @@ const badgeStyles = cva("py-1 px-2.5 border-none rounded text-xl font-medium", {
       danger: "bg-red-100 text-red-800",
       info: "bg-indigo-100 text-indigo-800",
     },
+    size: {
+      small: "py-0.5 px-2 text-sm",
+      medium: "py-1 px-2.5 text-base",
+      large: "py-2 px-3.5 text-lg",
+    },
   },
   defaultVariants: {
     color: "primary",
+    size: "medium",
   },
 });
 
-const Badge = ({ color = "primary", children, className, ...props }) => {
+const Badge = ({
+  color = "primary",
+  size = "medium",
+  children,
+  className,
+  ...props
+}) => {
   return (
-    <span className={cn(badgeStyles({ color }), className)} {...props}>
+    <span className={cn(badgeStyles({ color, size }), className)} {...props}>
       {children}
     </span>
   );

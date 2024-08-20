@@ -39,7 +39,7 @@ const ToggleButton = ({
       />
       <div
         className={cn(
-          "group peer h-12 w-24 rounded-full bg-rose-500 shadow-md outline-none ring-0 duration-300 after:duration-300 peer-checked:bg-[#21B531] peer-focus:outline-none",
+          "group peer h-12 w-24 rounded-full bg-rose-400 shadow-md outline-none ring-0 duration-300 after:duration-300 peer-checked:bg-[#21B531] peer-focus:outline-none",
           "after:absolute after:left-1 after:top-1 after:flex after:h-10 after:w-10 after:-rotate-180 after:items-center after:justify-center after:rounded-full after:bg-gray-50 after:outline-none after:content-['✖️']",
           "peer-checked:after:translate-x-12 peer-checked:after:rotate-0 peer-checked:after:content-['✔️']",
           size === "small" &&

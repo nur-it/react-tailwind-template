@@ -2,7 +2,9 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
+import Alert from "../components/ui/Alert";
 import Badge from "../components/ui/Badge";
+import Breadcrumb from "../components/ui/Breadcrumb";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
 import MultipleImageUpload from "../components/ui/MultipleImageUpload";
@@ -72,13 +74,64 @@ const DashBoard = () => {
             ))}
           </div>
           <div className="mt-6">
+            <h4>Alert</h4>
+            <div className="inline-flex flex-col p-8">
+              <Alert type="primary" size="medium" closable>
+                A simple primary alert - check it out!
+              </Alert>
+              <Alert type="secondary" size="medium" closable>
+                A simple secondary alert - check it out!
+              </Alert>
+              <Alert type="success" size="medium" closable>
+                A simple success alert - check it out!
+              </Alert>
+              <Alert type="danger" size="medium" closable>
+                A simple danger alert - check it out!
+              </Alert>
+
+              <Alert type="primary" size="small" closable>
+                Small primary alert!
+              </Alert>
+              <Alert type="success" size="large" closable>
+                Large success alert!
+              </Alert>
+            </div>
+            <h4>Badge</h4>
             <div className="flex items-center justify-start space-x-3">
-              <Badge color="secondary">Disabled</Badge>
-              <Badge color="info">Info</Badge>
-              <Badge color="success">Success</Badge>
-              <Badge color="warn">Warning</Badge>
-              <Badge color="danger">Error</Badge>
-              <Badge color="primary">New</Badge>
+              <Badge color="secondary" size="small">
+                Disabled
+              </Badge>
+              <Badge color="info" size="medium">
+                Info
+              </Badge>
+              <Badge color="success" size="large">
+                Success
+              </Badge>
+              <Badge color="warn" size="medium">
+                Warning
+              </Badge>
+              <Badge color="danger" size="small">
+                Error
+              </Badge>
+              <Badge color="primary" size="small">
+                New
+              </Badge>
+            </div>
+            <div className="mt-6">
+              <h4>Breadcrumb</h4>
+              <Breadcrumb
+                links={[
+                  { href: "#", label: "Home", title: "Back to homepage" },
+                  { href: "#", label: "Parent", title: "Parent page" },
+                  { href: "#", label: "Parent", title: "Parent page" },
+                  {
+                    href: "#",
+                    label: "Current",
+                    title: "Current page",
+                    active: true,
+                  },
+                ]}
+              />
             </div>
           </div>
 
@@ -157,7 +210,7 @@ const DashBoard = () => {
             />
           </div>
           <div className="mt-6 flex items-center">
-            <Checkbox size="small" variant="default" />
+            <Checkbox size="medium" variant="default" />
             <span className="ml-2">Large Disabled Checkbox</span>
           </div>
           <div className="mt-6">
@@ -165,6 +218,7 @@ const DashBoard = () => {
               id="toggle1"
               name="toggle1"
               status="active"
+              checked={true}
               size="small"
             />
           </div>
