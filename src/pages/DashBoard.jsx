@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
+import TestTable from "../components/screens/TestTable";
 import { RightArrow } from "../components/shared/svg/RightArrow";
 import Alert from "../components/ui/Alert";
 import Badge from "../components/ui/Badge";
@@ -90,6 +91,9 @@ const DashBoard = () => {
             ))}
           </div>
 
+          {/* ========================================= 
+          testing ui render started
+          ========================================= */}
           <div className="mt-6">
             <label className="text-lg font-semibold">Choose Date</label>
             <br />
@@ -179,6 +183,7 @@ const DashBoard = () => {
               onImagesChange={handleImagesChange}
             />
           </div>
+
           <Link to={"/"}>
             <Button
               icon={{ Icon: RightArrow, float: "right" }}
@@ -188,6 +193,7 @@ const DashBoard = () => {
               Dynamic Button
             </Button>
           </Link>
+
           <div className="mt-6 space-x-6">
             <SingleSelectOption
               id="custom-select"
@@ -206,6 +212,7 @@ const DashBoard = () => {
               variant="primary"
             />
           </div>
+
           <div className="mt-6 flex flex-col gap-6">
             <RadioButton
               id="radio1"
@@ -238,11 +245,13 @@ const DashBoard = () => {
               custom={true}
             />
           </div>
+
           <div className="mt-6 flex items-center">
             <Checkbox size="medium" variant="default" />
             <span className="ml-2">Large Disabled Checkbox</span>
           </div>
-          <div className="mt-6">
+
+          <div className="my-6">
             <ToggleButton
               id="toggle1"
               name="toggle1"
@@ -251,6 +260,9 @@ const DashBoard = () => {
               size="small"
             />
           </div>
+
+          <TestTable />
+
           <div className="mt-6">
             <Pagination
               totalPages={totalPages}

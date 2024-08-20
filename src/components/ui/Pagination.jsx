@@ -38,8 +38,8 @@ const paginationStyles = cva(
 );
 
 const Pagination = ({
-  totalPages,
-  currentPage,
+  totalPages = 10,
+  currentPage = 1,
   onPageChange,
   variant = "primary",
   size = "medium",
