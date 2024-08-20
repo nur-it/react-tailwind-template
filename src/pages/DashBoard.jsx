@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
+import Badge from "../components/ui/Badge";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
 import MultipleImageUpload from "../components/ui/MultipleImageUpload";
@@ -69,6 +70,16 @@ const DashBoard = () => {
             {summeryData.map((item, index) => (
               <SummeryCard key={index} item={item} index={index} />
             ))}
+          </div>
+          <div className="mt-6">
+            <div className="flex items-center justify-start space-x-3">
+              <Badge color="secondary">Disabled</Badge>
+              <Badge color="info">Info</Badge>
+              <Badge color="success">Success</Badge>
+              <Badge color="warn">Warning</Badge>
+              <Badge color="danger">Error</Badge>
+              <Badge color="primary">New</Badge>
+            </div>
           </div>
 
           <div className="mt-6 space-y-3">
