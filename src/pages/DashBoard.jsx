@@ -4,6 +4,7 @@ import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
+import MultiSelectOption from "../components/ui/MultiSelectOption";
 import RadioButton from "../components/ui/RadioButton";
 import SingleSelectOption from "../components/ui/SingleSelectOption";
 import ToggleButton from "../components/ui/ToggleButton";
@@ -68,8 +69,16 @@ const DashBoard = () => {
               Dynamic Button
             </Button>
           </Link>
-          <div className="mt-6">
+          <div className="mt-6 space-x-6">
             <SingleSelectOption
+              id="custom-select"
+              name="custom-select"
+              options={options}
+              onChange={handleSelectChange}
+              size="medium"
+              variant="primary"
+            />
+            <MultiSelectOption
               id="custom-select"
               name="custom-select"
               options={options}
