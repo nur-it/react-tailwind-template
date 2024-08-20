@@ -4,8 +4,10 @@ import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
+import MultipleImageUpload from "../components/ui/MultipleImageUpload";
 import MultiSelectOption from "../components/ui/MultiSelectOption";
 import RadioButton from "../components/ui/RadioButton";
+import SingleImageUpload from "../components/ui/SingleImageUpload";
 import SingleSelectOption from "../components/ui/SingleSelectOption";
 import ToggleButton from "../components/ui/ToggleButton";
 
@@ -47,6 +49,14 @@ const DashBoard = () => {
     console.log("Selected:", option);
   };
 
+  const handleFileUpload = (file) => {
+    console.log("File uploaded:", file);
+  };
+
+  const handleImagesChange = (images) => {
+    console.log("Uploaded images:", images);
+  };
+
   return (
     <>
       <Helmet>
@@ -59,6 +69,22 @@ const DashBoard = () => {
             {summeryData.map((item, index) => (
               <SummeryCard key={index} item={item} index={index} />
             ))}
+          </div>
+
+          <div className="mt-6 space-y-3">
+            <h4>Single Image Upload</h4>
+            <SingleImageUpload
+              id="profile-image-upload"
+              className="max-w-[400px]"
+              onFileUpload={handleFileUpload}
+            />
+            <h4 className="pt-6">Multiple Image Upload</h4>
+            <MultipleImageUpload
+              id="multiple-image-upload"
+              className="max-w-[400px]"
+              columns="three"
+              onImagesChange={handleImagesChange}
+            />
           </div>
           <Link to={"/"}>
             <Button
