@@ -1,5 +1,8 @@
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
+import Circle from "../components/shared/svg/Circle";
+import Button from "../components/ui/Button";
 
 const DashBoard = () => {
   const summeryData = [
@@ -42,6 +45,11 @@ const DashBoard = () => {
               <SummeryCard key={index} item={item} index={index} />
             ))}
           </div>
+          <Link to={"/"}>
+            <Button icon={{ Icon: Circle, float: "right" }} className={"mt-6 rounded-full shadow-2xl"}>
+              Dynamic Button
+            </Button>
+          </Link>
         </div>
       </section>
     </>
