@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
+import RadioButton from "../components/ui/RadioButton";
 
 const DashBoard = () => {
   const summeryData = [
@@ -46,10 +47,45 @@ const DashBoard = () => {
             ))}
           </div>
           <Link to={"/"}>
-            <Button icon={{ Icon: RightArrow, float: "right" }} className={"mt-6 rounded-full shadow-2xl"}>
+            <Button
+              icon={{ Icon: RightArrow, float: "right" }}
+              className={"mt-6 rounded-full shadow-2xl"}
+            >
               Dynamic Button
             </Button>
           </Link>
+          <div className="flex flex-col gap-6 mt-6">
+            <RadioButton
+              id="radio1"
+              name="example"
+              value="option1"
+              onChange={(e) => console.log(e.target.value)}
+              variant="primary"
+              size="small"
+              label="Option 1"
+              custom={true}
+            />
+            <RadioButton
+              id="radio2"
+              name="example"
+              value="option2"
+              onChange={(e) => console.log(e.target.value)}
+              variant="primary"
+              size="small"
+              label="Option 2"
+              custom={true}
+            />
+            <RadioButton
+              id="radio3"
+              name="example"
+              value="option3"
+              onChange={(e) => console.log(e.target.value)}
+              variant="primary"
+              size="small"
+              label="Option 3"
+              custom={true}
+            />
+          </div>
         </div>
       </section>
     </>
