@@ -5,6 +5,7 @@ import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
 import RadioButton from "../components/ui/RadioButton";
+import ToggleButton from "../components/ui/ToggleButton";
 
 const DashBoard = () => {
   const summeryData = [
@@ -87,9 +88,17 @@ const DashBoard = () => {
               custom={true}
             />
           </div>
-          <div className="flex items-center mt-6">
-            <Checkbox size="small" variant="default"  />
+          <div className="mt-6 flex items-center">
+            <Checkbox size="small" variant="default" />
             <span className="ml-2">Large Disabled Checkbox</span>
+          </div>
+          <div className="mt-6">
+            <ToggleButton
+              id="toggle1"
+              name="toggle1"
+              status="active"
+              size="small"
+            />
           </div>
         </div>
       </section>
