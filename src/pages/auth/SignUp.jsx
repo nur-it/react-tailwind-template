@@ -12,7 +12,7 @@ import {
 } from "react-icons/fi";
 import signInSvg from "../../assets/images/illustration-03.svg";
 import logoDark from "../../assets/images/logo-dark.svg";
-import InputTextWithIcon from "../../components/common/InputTextWithIcon";
+import InputTextWithIcon from "../../components/ui/InputTextWithIcon";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {

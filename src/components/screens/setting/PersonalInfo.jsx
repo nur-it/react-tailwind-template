@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEdit, FiMail, FiPhone, FiUser } from "react-icons/fi";
-import InputTextWithIcon from "../../common/InputTextWithIcon";
-import LongTextInputWithIcon from "../../common/LongTextInputWithIcon";
+import InputTextWithIcon from "../../ui/InputTextWithIcon";
+import LongTextInputWithIcon from "../../ui/LongTextInputWithIcon";
 
 const PersonalInfo = () => {
   // State variable to store form data as an object
