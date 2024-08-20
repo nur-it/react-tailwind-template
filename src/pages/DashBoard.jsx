@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
 import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
+import Checkbox from "../components/ui/Checkbox";
 import RadioButton from "../components/ui/RadioButton";
 
 const DashBoard = () => {
@@ -54,7 +55,7 @@ const DashBoard = () => {
               Dynamic Button
             </Button>
           </Link>
-          <div className="flex flex-col gap-6 mt-6">
+          <div className="mt-6 flex flex-col gap-6">
             <RadioButton
               id="radio1"
               name="example"
@@ -85,6 +86,10 @@ const DashBoard = () => {
               label="Option 3"
               custom={true}
             />
+          </div>
+          <div className="flex items-center mt-6">
+            <Checkbox size="small" variant="default"  />
+            <span className="ml-2">Large Disabled Checkbox</span>
           </div>
         </div>
       </section>
