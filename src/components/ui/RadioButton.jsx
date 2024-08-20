@@ -72,7 +72,7 @@ const RadioButton = ({
         >
           <div
             className={cn(
-              "h-2 w-2 rounded-complete bg-primary transition-transform duration-300 ease-in-out",
+              "h-2.5 w-2.5 rounded-complete bg-primary transition-transform duration-300 ease-in-out",
               "peer-checked:scale-100",
             )}
           />
