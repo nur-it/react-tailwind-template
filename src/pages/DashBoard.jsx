@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import SummeryCard from "../components/screens/dashboard/SummeryCard";
@@ -7,6 +8,7 @@ import Badge from "../components/ui/Badge";
 import Breadcrumb from "../components/ui/Breadcrumb";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
+import DatePicker from "../components/ui/DatePicker";
 import MultipleImageUpload from "../components/ui/MultipleImageUpload";
 import MultiSelectOption from "../components/ui/MultiSelectOption";
 import RadioButton from "../components/ui/RadioButton";
@@ -42,6 +44,8 @@ const DashBoard = () => {
     },
   ];
 
+  const [date, setDate] = useState(null);
+
   const options = [
     { value: "option1", label: "Option 1" },
     { value: "option2", label: "Option 2" },
@@ -60,6 +64,8 @@ const DashBoard = () => {
     console.log("Uploaded images:", images);
   };
 
+  console.log("Selected date:", date);
+
   return (
     <>
       <Helmet>
@@ -73,6 +79,19 @@ const DashBoard = () => {
               <SummeryCard key={index} item={item} index={index} />
             ))}
           </div>
+
+          <div className="mt-6">
+            <label className="text-lg font-semibold">Choose Date</label>
+            <br />
+            <DatePicker
+              size="large"
+              variant="primary"
+              placeholder="Select a date"
+              date={date}
+              setDate={setDate}
+            />
+          </div>
+
           <div className="mt-6">
             <h4>Alert</h4>
             <div className="inline-flex flex-col p-8">
