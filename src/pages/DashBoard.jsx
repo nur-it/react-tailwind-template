@@ -11,6 +11,7 @@ import Checkbox from "../components/ui/Checkbox";
 import DatePicker from "../components/ui/DatePicker";
 import MultipleImageUpload from "../components/ui/MultipleImageUpload";
 import MultiSelectOption from "../components/ui/MultiSelectOption";
+import Pagination from "../components/ui/Pagination";
 import RadioButton from "../components/ui/RadioButton";
 import SingleImageUpload from "../components/ui/SingleImageUpload";
 import SingleSelectOption from "../components/ui/SingleSelectOption";
@@ -45,6 +46,15 @@ const DashBoard = () => {
   ];
 
   const [date, setDate] = useState(null);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = 10;
+
+  const handlePageChange = (page) => {
+    if (page > 0 && page <= totalPages) {
+      setCurrentPage(page);
+    }
+  };
 
   const options = [
     { value: "option1", label: "Option 1" },
@@ -241,7 +251,16 @@ const DashBoard = () => {
               size="small"
             />
           </div>
-          <div className="mt-6"></div>
+          <div className="mt-6">
+            <Pagination
+              totalPages={totalPages}
+              currentPage={currentPage}
+              onPageChange={handlePageChange}
+              variant="primary"
+              size="large"
+              siblingCount={2} // Adjust the number of pages shown around the current page
+            />
+          </div>
         </div>
       </section>
     </>
