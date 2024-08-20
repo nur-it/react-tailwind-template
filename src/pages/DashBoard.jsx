@@ -5,6 +5,7 @@ import { RightArrow } from "../components/shared/svg/RightArrow";
 import Button from "../components/ui/Button";
 import Checkbox from "../components/ui/Checkbox";
 import RadioButton from "../components/ui/RadioButton";
+import SingleSelectOption from "../components/ui/SingleSelectOption";
 import ToggleButton from "../components/ui/ToggleButton";
 
 const DashBoard = () => {
@@ -35,6 +36,16 @@ const DashBoard = () => {
     },
   ];
 
+  const options = [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ];
+
+  const handleSelectChange = (option) => {
+    console.log("Selected:", option);
+  };
+
   return (
     <>
       <Helmet>
@@ -51,11 +62,22 @@ const DashBoard = () => {
           <Link to={"/"}>
             <Button
               icon={{ Icon: RightArrow, float: "right" }}
-              className={"mt-6 rounded-full shadow-2xl"}
+              className={"mt-6 rounded-md shadow-2xl"}
+              size="small"
             >
               Dynamic Button
             </Button>
           </Link>
+          <div className="mt-6">
+            <SingleSelectOption
+              id="custom-select"
+              name="custom-select"
+              options={options}
+              onChange={handleSelectChange}
+              size="medium"
+              variant="primary"
+            />
+          </div>
           <div className="mt-6 flex flex-col gap-6">
             <RadioButton
               id="radio1"
@@ -100,6 +122,7 @@ const DashBoard = () => {
               size="small"
             />
           </div>
+          <div className="mt-6"></div>
         </div>
       </section>
     </>
