@@ -171,6 +171,15 @@ function App() {
 | `children`  | ReactNode | `null`      | The content inside the alert.                                                 | Yes      |
 | `className` | string    | `""`        | Additional custom classes for the alert.                                      | No       |
 
+### Example
+
+```jsx
+<Alert type="success" size="large" closable>
+  <MdCheckCircle className="h-5 w-5 text-green-700" />
+  This is a success alert with an icon and close button!
+</Alert>
+```
+
 This will render a large success alert with an icon and a close button.
 
 ### Button
