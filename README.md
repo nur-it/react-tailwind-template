@@ -18,7 +18,7 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
 
 The project is structured as follows:
 
-```bash
+```
 react-tailwind-starter/
 ├── public/
 ├── src/
@@ -113,27 +113,27 @@ react-tailwind-starter/
 
 ### Clone the repository:
 
-\```bash
+```
 git clone https://github.com/nur-it/react-tailwind-boilerplate.git
-\```
+```
 
 ### Install dependencies:
 
-\```bash
+```
 npm install
-\```
+```
 
 ### Run the development server:
 
-\```bash
+```
 npm run dev
-\```
+```
 
 ### Build for production:
 
-\```bash
+```
 npm run build
-\```
+```
 
 ## Customization
 
