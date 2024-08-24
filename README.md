@@ -16,7 +16,7 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [Badge](#badge)
   - [Breadcrumb](#breadcrumb)
   - [Checkbox](#checkbox)
-  - [DatePicker](#date-picker)
+  - [DatePicker](#datePicker)
 - [License](#license)
 
 ## Project Structure
