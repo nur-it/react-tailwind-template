@@ -11,8 +11,8 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
 - [Getting Started](#getting-started)
 - [Customization](#customization)
 - [Components](#components)
-  - [Button](#button)
   - [Alert](#alert)
+  - [Button](#button)
 - [License](#license)
 
 ## Project Structure
@@ -142,6 +142,37 @@ Feel free to customize this starter template according to your project's needs. 
 
 ## Components
 
+### Alert
+
+The Alert component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants. It displays a message with an optional icon and close button, making it suitable for notifications and alerts.
+
+#### Usage
+
+```jsx
+import Alert from "./components/ui/Alert";
+import { MdCheckCircle } from "react-icons/md";
+
+function App() {
+  return (
+    <Alert type="success" size="large" closable>
+      This is a success alert!
+    </Alert>
+  );
+}
+```
+
+### Props
+
+| Prop Name   | Type      | Default     | Description                                                                   | Required |
+| ----------- | --------- | ----------- | ----------------------------------------------------------------------------- | -------- |
+| `type`      | string    | `"primary"` | The alert type. Options: `"primary"`, `"secondary"`, `"success"`, `"danger"`. | No       |
+| `size`      | string    | `"medium"`  | The alert size. Options: `"small"`, `"medium"`, `"large"`.                    | No       |
+| `closable`  | boolean   | `false`     | If true, a close button will be displayed to dismiss the alert.               | No       |
+| `children`  | ReactNode | `null`      | The content inside the alert.                                                 | Yes      |
+| `className` | string    | `""`        | Additional custom classes for the alert.                                      | No       |
+
+This will render a large success alert with an icon and a close button.
+
 ### Button
 
 The Button component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants.
@@ -188,37 +219,6 @@ function App() {
 ```
 
 This will render a large secondary button with an icon on the right side and a loading spinner.
-
-### Alert
-
-The Alert component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants. It displays a message with an optional icon and close button, making it suitable for notifications and alerts.
-
-#### Usage
-
-```jsx
-import Alert from "./components/ui/Alert";
-import { MdCheckCircle } from "react-icons/md";
-
-function App() {
-  return (
-    <Alert type="success" size="large" closable>
-      This is a success alert!
-    </Alert>
-  );
-}
-```
-
-### Props
-
-| Prop Name   | Type      | Default     | Description                                                                   | Required |
-| ----------- | --------- | ----------- | ----------------------------------------------------------------------------- | -------- |
-| `type`      | string    | `"primary"` | The alert type. Options: `"primary"`, `"secondary"`, `"success"`, `"danger"`. | No       |
-| `size`      | string    | `"medium"`  | The alert size. Options: `"small"`, `"medium"`, `"large"`.                    | No       |
-| `closable`  | boolean   | `false`     | If true, a close button will be displayed to dismiss the alert.               | No       |
-| `children`  | ReactNode | `null`      | The content inside the alert.                                                 | Yes      |
-| `className` | string    | `""`        | Additional custom classes for the alert.                                      | No       |
-
-This will render a large success alert with an icon and a close button.
 
 ## License
 
