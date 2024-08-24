@@ -14,6 +14,9 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [Alert](#alert)
   - [Button](#button)
   - [Badge](#badge)
+  - [Breadcrumb](#breadcrumb)
+  - [Checkbox](#checkbox)
+  - [DatePicker](#date-picker)
 - [License](#license)
 
 ## Project Structure
@@ -274,6 +277,187 @@ function App() {
 ```
 
 This will render a large success badge and a small danger badge with the specified styles.
+
+### Breadcrumb
+
+The Breadcrumb component provides a navigation trail for users to see their current location within a hierarchical structure.
+
+#### Usage
+
+```jsx
+import Breadcrumb from "./components/ui/Breadcrumb";
+import { Link } from "react-router-dom";
+
+function App() {
+  const breadcrumbLinks = [
+    { label: "Home", href: "/", active: false, title: "Go to Home" },
+    {
+      label: "Products",
+      href: "/products",
+      active: false,
+      title: "View Products",
+    },
+    {
+      label: "Details",
+      href: "/products/details",
+      active: true,
+      title: "Product Details",
+    },
+  ];
+
+  return <Breadcrumb links={breadcrumbLinks} />;
+}
+```
+
+### Props
+
+| Prop Name   | Type   | Default | Description                                                                                                            | Required |
+| ----------- | ------ | ------- | ---------------------------------------------------------------------------------------------------------------------- | -------- |
+| `links`     | array  | `[]`    | An array of objects representing breadcrumb links. Each object should include: `label`, `href`, `active`, and `title`. | Yes      |
+| `className` | string | `""`    | Additional custom classes for the breadcrumb container.                                                                | No       |
+
+### Example
+
+```jsx
+<Breadcrumb
+  links={[
+    { label: "Home", href: "/", title: "Go to homepage" },
+    { label: "Category", href: "/category", title: "View category" },
+    {
+      label: "Subcategory",
+      href: "/category/subcategory",
+      title: "View subcategory",
+      active: true,
+    },
+  ]}
+  className="my-custom-class"
+></Breadcrumb>
+```
+
+This will render a breadcrumb trail with links for "Home", "Category", and "Subcategory", with "Subcategory" marked as active and styled accordingly.
+
+### Checkbox
+
+The Checkbox component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants.
+
+#### Usage
+
+```jsx
+import Checkbox from "./components/ui/Checkbox";
+
+function App() {
+  return (
+    <div>
+      <Checkbox size="large" variant="checked" />
+      <Checkbox size="small" variant="default" disabled />
+    </div>
+  );
+}
+```
+
+### Props
+
+| Prop Name  | Type    | Default     | Description                                                             | Required |
+| ---------- | ------- | ----------- | ----------------------------------------------------------------------- | -------- |
+| `checked`  | boolean | `false`     | If true, the checkbox will be checked.                                  | No       |
+| `size`     | string  | `"medium"`  | The size of the checkbox. Options: `"small"`, `"medium"`, `"large"`.    | No       |
+| `variant`  | string  | `"default"` | The checkbox variant. Options: `"default"`, `"checked"`, `"disabled"`.  | No       |
+| `disabled` | boolean | `false`     | If true, the checkbox will be disabled and appear with reduced opacity. | No       |
+| `...props` | object  | -           | Additional props to pass to the checkbox input element.                 | No       |
+
+### Example
+
+```jsx
+<Checkbox size="small" variant="default">
+  Small Default Checkbox
+</Checkbox>
+
+<Checkbox size="medium" variant="checked" checked={true}>
+  Medium Checked Checkbox
+</Checkbox>
+
+<Checkbox size="large" variant="disabled" disabled={true}>
+  Large Disabled Checkbox
+</Checkbox>
+```
+
+This will render checkboxes of different sizes and states with the specified styles. The first checkbox is small and default, the second is medium and checked, and the third is large and disabled.
+
+### DatePicker
+
+The DatePicker component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants and sizes. It utilizes the `react-flatpickr` library for date selection.
+
+#### Usage
+
+```jsx
+import React, { useState } from "react";
+import DatePicker from "./components/ui/DatePicker";
+
+function App() {
+  const [date, setDate] = useState(null);
+
+  return (
+    <DatePicker
+      size="small"
+      variant="default"
+      placeholder="Select a date"
+      date={date}
+      setDate={setDate}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name     | Type     | Default           | Description                                                                                                    | Required |
+| ------------- | -------- | ----------------- | -------------------------------------------------------------------------------------------------------------- | -------- |
+| `id`          | string   | `"datepicker"`    | The ID attribute of the date picker input.                                                                     | No       |
+| `placeholder` | string   | `"Select a date"` | The placeholder text for the date picker input.                                                                | No       |
+| `size`        | string   | `"medium"`        | The size of the date picker. Options: `"small"`, `"medium"`, `"large"`.                                        | No       |
+| `variant`     | string   | `"default"`       | The style variant of the date picker. Options: `"default"`, `"primary"`, `"success"`, `"warning"`, `"danger"`. | No       |
+| `date`        | Date     | `null`            | The currently selected date.                                                                                   | No       |
+| `setDate`     | function | -                 | A function to handle date changes. Receives the selected date as an argument.                                  | Yes      |
+| `...props`    | object   | -                 | Additional props to pass to the `Flatpickr` component.                                                         | No       |
+
+### Example
+
+```jsx
+import React, { useState } from "react";
+import DatePicker from "./components/ui/DatePicker";
+
+function App() {
+  const [date, setDate] = useState(null);
+
+  return (
+    <div>
+      <DatePicker
+        size="small"
+        variant="default"
+        placeholder="Select a date"
+        date={date}
+        setDate={setDate}
+      />
+      <DatePicker
+        size="medium"
+        variant="primary"
+        placeholder="Pick a date"
+        date={date}
+        setDate={setDate}
+      />
+      <DatePicker
+        size="large"
+        variant="success"
+        placeholder="Choose a date"
+        date={date}
+        setDate={setDate}
+      />
+    </div>
+  );
+}
+```
+
+This will render three DatePicker components with different sizes and styles. The first is small with the default style, the second is medium with the primary style, and the third is large with the success style.
 
 ## License
 
