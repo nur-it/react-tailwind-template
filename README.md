@@ -20,6 +20,7 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [InputText](#inputText)
   - [InputTextWithIcon](#inputTextWithIcon)
   - [TextArea](#textAreaInput)
+  - [TextAreaWithIcon](#textAreaInputWithIcon)
 - [License](#license)
 
 ## Project Structure
@@ -698,6 +699,92 @@ function App() {
 ```
 
 This example will render a textarea input field for comments with a custom number of rows. The handleChange function will update the state as the user types in the textarea.
+
+## TextAreaInputWithIcon
+
+The `LongTextInputWithIcon` component is a versatile and reusable textarea element built using React and Tailwind CSS. It supports displaying an icon inside the textarea container and handles user input changes.
+
+```jsx
+import { FaComment } from "react-icons/fa";
+
+const LongTextInputWithIcon = ({
+  id,
+  name,
+  icon,
+  value,
+  label,
+  textRow,
+  placeholder,
+  handleChange,
+}) => {
+  return (
+    <div className="w-full">
+      <label className="mb-3 block text-sm font-medium text-black" htmlFor={id}>
+        {label}
+      </label>
+
+      <div className="relative">
+        <span className="absolute left-4 top-4">{icon}</span>
+
+        <textarea
+          id={id}
+          name={name}
+          rows={textRow}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          className="border-stroke w-full rounded border bg-gray-100 py-3 pl-12 pr-4 font-medium text-black focus:border-primary focus-visible:outline-none"
+        ></textarea>
+      </div>
+    </div>
+  );
+};
+
+export default LongTextInputWithIcon;
+```
+
+### Props
+
+| Prop Name      | Type        | Default | Description                                                                 | Required |
+| -------------- | ----------- | ------- | --------------------------------------------------------------------------- | -------- |
+| `id`           | `string`    | `""`    | The unique identifier for the textarea element.                             | Yes      |
+| `name`         | `string`    | `""`    | The name attribute for the textarea element, used for form data submission. | Yes      |
+| `icon`         | `ReactNode` | `null`  | The icon to be displayed inside the textarea container.                     | No       |
+| `value`        | `string`    | `""`    | The current value of the textarea input.                                    | Yes      |
+| `label`        | `string`    | `""`    | The label text displayed above the textarea element.                        | Yes      |
+| `textRow`      | `number`    | `3`     | The number of rows for the textarea element.                                | No       |
+| `placeholder`  | `string`    | `""`    | The placeholder text for the textarea element.                              | No       |
+| `handleChange` | `function`  | `null`  | The function to handle the change event of the textarea input.              | Yes      |
+
+### Example
+
+```jsx
+import LongTextInputWithIcon from "./components/ui/LongTextInputWithIcon";
+import { FaComment } from "react-icons/fa";
+
+function App() {
+  const handleChange = (event) => {
+    console.log(event.target.value);
+  };
+
+  return (
+    <div className="p-4">
+      <LongTextInputWithIcon
+        id="message"
+        name="message"
+        icon={<FaComment />}
+        value="This is a sample message."
+        label="Message"
+        textRow={5}
+        placeholder="Enter your message here"
+        handleChange={handleChange}
+      />
+    </div>
+  );
+}
+```
+
+This documentation provides a complete overview of the LongTextInputWithIcon component, including its props, an example usage, and the component code itself.
 
 ## License
 
