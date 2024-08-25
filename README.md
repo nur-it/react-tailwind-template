@@ -25,6 +25,10 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [MultipleImageUpload](#multipleImageUpload)
   - [SelectOption](#singleSelectOption)
   - [MultiSelectOption](#multiSelectOption)
+  - [Pagination](#pagination)
+  - [RadioButton](#radioButton)
+  - [Table](#table)
+  - [ToggleButton](#toggleButton)
 - [License](#license)
 
 ## Project Structure
@@ -1036,6 +1040,308 @@ function App() {
 ```
 
 This will render a large, secondary-styled multi-select dropdown where users can select multiple options.
+
+### Pagination
+
+The Pagination component is a flexible and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants. It provides navigation for paginated content, allowing users to navigate between different pages.
+
+#### Usage
+
+```jsx
+import Pagination from "./components/ui/Pagination";
+
+function App() {
+  const handlePageChange = (pageNumber) => {
+    console.log("Current Page:", pageNumber);
+  };
+
+  return (
+    <Pagination
+      totalPages={20}
+      currentPage={5}
+      onPageChange={handlePageChange}
+      variant="primary"
+      size="medium"
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name      | Type       | Default     | Description                                                                                           | Required |
+| -------------- | ---------- | ----------- | ----------------------------------------------------------------------------------------------------- | -------- |
+| `totalPages`   | `number`   | `10`        | The total number of pages.                                                                            | No       |
+| `currentPage`  | `number`   | `1`         | The currently active page.                                                                            | No       |
+| `onPageChange` | `function` | `null`      | Callback function triggered when a page is selected. Receives the new page number as an argument.     | Yes      |
+| `variant`      | `string`   | `"primary"` | The variant for the pagination buttons. Options: `"primary"`, `"secondary"`, `"success"`, `"danger"`. | No       |
+| `size`         | `string`   | `"medium"`  | The size of the pagination buttons. Options: `"small"`, `"medium"`, `"large"`.                        | No       |
+| `siblingCount` | `number`   | `1`         | The number of sibling pages to display on either side of the current page.                            | No       |
+
+### Example
+
+```jsx
+<Pagination
+  totalPages={15}
+  currentPage={3}
+  onPageChange={(page) => console.log("Selected Page:", page)}
+  variant="secondary"
+  size="large"
+/>
+```
+
+This will render a large secondary pagination component that navigates between 15 pages, with the 3rd page initially selected.
+
+### RadioButton
+
+The `RadioButton` component is a customizable and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants.
+
+#### Usage
+
+```jsx
+import RadioButton from "./components/ui/RadioButton";
+
+function App() {
+  return (
+    <RadioButton
+      id="radio1"
+      name="example"
+      value="1"
+      checked={true}
+      onChange={() => console.log("Radio button clicked!")}
+      label="Option 1"
+      variant="primary"
+      size="medium"
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name   | Type       | Default     | Description                                                                                          | Required |
+| ----------- | ---------- | ----------- | ---------------------------------------------------------------------------------------------------- | -------- |
+| `id`        | `string`   | `null`      | The unique identifier for the radio button.                                                          | Yes      |
+| `name`      | `string`   | `null`      | The name attribute for the radio button, used to group radio buttons together.                       | Yes      |
+| `value`     | `string`   | `null`      | The value of the radio button, which will be submitted with the form if the radio button is checked. | Yes      |
+| `checked`   | `boolean`  | `false`     | Determines if the radio button is checked.                                                           | Yes      |
+| `onChange`  | `function` | `null`      | Callback function triggered when the radio button's state changes.                                   | Yes      |
+| `className` | `string`   | `""`        | Additional custom classes for the radio button.                                                      | No       |
+| `variant`   | `string`   | `"primary"` | The variant for the radio button. Options: `"primary"`, `"secondary"`, `"danger"`.                   | No       |
+| `size`      | `string`   | `"medium"`  | The size of the radio button. Options: `"small"`, `"medium"`, `"large"`.                             | No       |
+| `disabled`  | `boolean`  | `false`     | If true, the radio button will be disabled.                                                          | No       |
+| `label`     | `string`   | `null`      | Text label displayed next to the radio button.                                                       | No       |
+| `custom`    | `boolean`  | `false`     | If true, custom styles will be applied to the radio button.                                          | No       |
+
+### Example
+
+```jsx
+<RadioButton
+  id="radio2"
+  name="example"
+  value="2"
+  checked={false}
+  onChange={() => console.log("Radio button clicked!")}
+  label="Option 2"
+  variant="secondary"
+  size="large"
+  custom={true}
+/>
+```
+
+This will render a large secondary radio button with a custom style and label "Option 2". When clicked, it will trigger the onChange function.
+
+### Table
+
+The `Table` components provide a flexible and customizable way to create tables using React, Tailwind CSS, and `class-variance-authority (cva)` for managing styles and variants.
+
+## Usage
+
+```jsx
+import {
+  TableContainer,
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableFooter,
+} from "./components/ui/Table";
+
+function App() {
+  return (
+    <TableContainer>
+      <Table striped={true}>
+        <TableHeader>
+          <TableRow>
+            <TableCell>Header 1</TableCell>
+            <TableCell>Header 2</TableCell>
+            <TableCell>Header 3</TableCell>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell>Data 1</TableCell>
+            <TableCell>Data 2</TableCell>
+            <TableCell>Data 3</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Data 4</TableCell>
+            <TableCell>Data 5</TableCell>
+            <TableCell>Data 6</TableCell>
+          </TableRow>
+        </TableBody>
+        <TableFooter>
+          <span>Table Footer</span>
+        </TableFooter>
+      </Table>
+    </TableContainer>
+  );
+}
+```
+
+### TableContainer
+
+The TableContainer component is a wrapper for the table, providing overflow handling for large tables.
+
+### Props
+
+| Prop Name   | Type        | Default | Description                                        | Required |
+| ----------- | ----------- | ------- | -------------------------------------------------- | -------- |
+| `children`  | `ReactNode` | `null`  | The content inside the table container.            | Yes      |
+| `className` | `string`    | `""`    | Additional custom classes for the table container. | No       |
+
+### TableBody
+
+The TableBody component is used for creating the body section of the table.
+
+### Props
+
+| Prop Name   | Type        | Default | Description                                   | Required |
+| ----------- | ----------- | ------- | --------------------------------------------- | -------- |
+| `children`  | `ReactNode` | `null`  | The content inside the table body.            | Yes      |
+| `className` | `string`    | `""`    | Additional custom classes for the table body. | No       |
+
+### TableRow
+
+The TableRow component is used for creating rows in the table.
+
+### Props
+
+| Prop Name   | Type        | Default | Description                                  | Required |
+| ----------- | ----------- | ------- | -------------------------------------------- | -------- |
+| `children`  | `ReactNode` | `null`  | The content inside the table row.            | Yes      |
+| `className` | `string`    | `""`    | Additional custom classes for the table row. | No       |
+
+### TableCell
+
+The TableCell component is used for creating cells in the table.
+
+### Props
+
+| Prop Name   | Type        | Default | Description                                   | Required |
+| ----------- | ----------- | ------- | --------------------------------------------- | -------- |
+| `children`  | `ReactNode` | `null`  | The content inside the table cell.            | Yes      |
+| `className` | `string`    | `""`    | Additional custom classes for the table cell. | No       |
+
+### TableFooter
+
+The TableFooter component is used for creating the footer section of the table.
+
+### Props
+
+| Prop Name   | Type        | Default | Description                                     | Required |
+| ----------- | ----------- | ------- | ----------------------------------------------- | -------- |
+| `children`  | `ReactNode` | `null`  | The content inside the table footer.            | Yes      |
+| `className` | `string`    | `""`    | Additional custom classes for the table footer. | No       |
+
+### Example
+
+```jsx
+<TableContainer className="my-6">
+  <Table striped={false}>
+    <TableHeader>
+      <TableRow>
+        <TableCell>Header 1</TableCell>
+        <TableCell>Header 2</TableCell>
+        <TableCell>Header 3</TableCell>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      <TableRow>
+        <TableCell>Data 1</TableCell>
+        <TableCell>Data 2</TableCell>
+        <TableCell>Data 3</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Data 4</TableCell>
+        <TableCell>Data 5</TableCell>
+        <TableCell>Data 6</TableCell>
+      </TableRow>
+    </TableBody>
+    <TableFooter>
+      <span>Table Footer</span>
+    </TableFooter>
+  </Table>
+</TableContainer>
+```
+
+This example renders a basic table with headers, rows, and a footer inside a scrollable container.
+
+### ToggleButton
+
+The ToggleButton component is a customizable and reusable UI element built using React. It features a toggle switch that can be used to represent an on/off state, with additional customization options like size and disabled state.
+
+#### Usage
+
+```jsx
+import ToggleButton from "./components/ui/ToggleButton";
+
+function App() {
+  const handleToggleChange = () => {
+    console.log("Toggle state changed");
+  };
+
+  return (
+    <ToggleButton
+      id="toggle1"
+      name="exampleToggle"
+      checked={true}
+      onChange={handleToggleChange}
+      size="medium"
+      disabled={false}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name   | Type       | Default   | Description                                                               | Required |
+| ----------- | ---------- | --------- | ------------------------------------------------------------------------- | -------- |
+| `id`        | `string`   | `null`    | The unique identifier for the toggle button.                              | Yes      |
+| `name`      | `string`   | `null`    | The name attribute for the toggle button input.                           | Yes      |
+| `checked`   | `boolean`  | `false`   | The initial checked state of the toggle button.                           | No       |
+| `onChange`  | `function` | `null`    | The callback function triggered when the toggle state changes.            | No       |
+| `className` | `string`   | `""`      | Additional custom classes for the toggle button.                          | No       |
+| `disabled`  | `boolean`  | `false`   | If true, the toggle button will be disabled and non-interactive.          | No       |
+| `size`      | `string`   | `"small"` | The size of the toggle button. Options: `"small"`, `"medium"`, `"large"`. | No       |
+| `...props`  | `object`   | `null`    | Additional props are spread onto the root element.                        | No       |
+
+### Example
+
+```jsx
+<ToggleButton
+  id="toggle2"
+  name="exampleToggle"
+  checked={false}
+  onChange={() => console.log("Toggled!")}
+  size="large"
+  disabled={false}
+/>
+```
+
+This will render a large toggle button that is initially off (unchecked) and logs "Toggled!" to the console when clicked.
 
 ## License
 
