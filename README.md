@@ -606,20 +606,22 @@ function App() {
 
 ### Props
 
-| Prop          | Type     | Description                                                                         |
-| ------------- | -------- | ----------------------------------------------------------------------------------- |
-| `id`          | `string` | The `id` of the input field, used for linking the label and input element.          |
-| `icon`        | `node`   | An icon component (e.g., from `react-icons`) to display inside the input.           |
-| `label`       | `string` | The text label associated with the input field.                                     |
-| `name`        | `string` | The `name` attribute for the input, used for form handling.                         |
-| `type`        | `string` | The type of input field (e.g., `text`, `password`).                                 |
-| `errors`      | `object` | Object containing validation errors, usually from a form validation library.        |
-| `pattern`     | `regex`  | Regular expression pattern for input validation.                                    |
-| `required`    | `bool`   | Indicates whether the input field is required.                                      |
-| `register`    | `func`   | Function to register the input with form validation (e.g., from `react-hook-form`). |
-| `minLength`   | `number` | The minimum length of the input value.                                              |
-| `maxLength`   | `number` | The maximum length of the input value.                                              |
-| `placeholder` | `string` | Placeholder text for the input field.                                               |
+### Props
+
+| Prop Name     | Type        | Default  | Description                                                                                      | Required |
+| ------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------ | -------- |
+| `id`          | `string`    | `""`     | The unique identifier for the input element.                                                     | Yes      |
+| `icon`        | `ReactNode` | `null`   | The icon element to be displayed inside the input field.                                         | No       |
+| `label`       | `string`    | `""`     | The label text displayed above the input element.                                                | Yes      |
+| `name`        | `string`    | `""`     | The name attribute for the input element, used for form data submission.                         | Yes      |
+| `type`        | `string`    | `"text"` | The type of input element (e.g., `text`, `password`, `email`).                                   | No       |
+| `errors`      | `object`    | `{}`     | An object containing validation errors returned by React Hook Form.                              | Yes      |
+| `pattern`     | `RegExp`    | `null`   | A regular expression pattern for validating the input value.                                     | No       |
+| `required`    | `boolean`   | `false`  | If true, the input field will be required.                                                       | No       |
+| `register`    | `function`  | `null`   | The `register` function from React Hook Form, used to register the input element for validation. | Yes      |
+| `minLength`   | `number`    | `null`   | The minimum length of the input value.                                                           | No       |
+| `maxLength`   | `number`    | `null`   | The maximum length of the input value.                                                           | No       |
+| `placeholder` | `string`    | `""`     | The placeholder text for the input element.                                                      | No       |
 
 ### Example
 
