@@ -1345,4 +1345,4 @@ This will render a large toggle button that is initially off (unchecked) and log
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/nur-it/react-tailwind-boilerplate?tab=MIT-1-ov-file).
