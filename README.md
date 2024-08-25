@@ -21,6 +21,8 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [InputTextWithIcon](#inputTextWithIcon)
   - [TextArea](#textAreaInput)
   - [TextAreaWithIcon](#textAreaInputWithIcon)
+  - [ImageUpload](#singleImageUpload)
+  - [MultipleImageUpload](#multipleImageUpload)
 - [License](#license)
 
 ## Project Structure
@@ -705,8 +707,6 @@ This example will render a textarea input field for comments with a custom numbe
 The `LongTextInputWithIcon` component is a versatile and reusable textarea element built using React and Tailwind CSS. It supports displaying an icon inside the textarea container and handles user input changes.
 
 ```jsx
-import { FaComment } from "react-icons/fa";
-
 const LongTextInputWithIcon = ({
   id,
   name,
@@ -785,6 +785,115 @@ function App() {
 ```
 
 This documentation provides a complete overview of the LongTextInputWithIcon component, including its props, an example usage, and the component code itself.
+
+### SingleImageUpload
+
+The SingleImageUpload component is a reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants. It provides a drag-and-drop area or browse option for uploading a single image and displays a preview of the uploaded image with an option to remove it.
+
+#### Usage
+
+```jsx
+import SingleImageUpload from "./components/ui/SingleImageUpload";
+
+function App() {
+  return (
+    <SingleImageUpload
+      id="profile-pic"
+      className="custom-class"
+      // ...other props
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name        | Type       | Default      | Description                                              | Required |
+| ---------------- | ---------- | ------------ | -------------------------------------------------------- | -------- |
+| `id`             | `string`   | `"dropzone"` | The unique identifier for the dropzone element.          | No       |
+| `className`      | `string`   | `""`         | Additional custom classes for the dropzone container.    | No       |
+| `onImagesChange` | `function` | `null`       | The function to handle changes when images are uploaded. | Yes      |
+| `...props`       | `object`   | `null`       | Additional props to be passed to the dropzone container. | No       |
+
+### Example
+
+```jsx
+<SingleImageUpload
+  id="profile-pic"
+  className="border-2 border-dashed border-gray-300"
+/>
+```
+
+This example renders a single image upload component with custom border styles. It allows users to drag and drop or browse to upload an image and shows a preview with an option to remove the uploaded image.
+
+### MultipleImageUpload
+
+The `MultipleImageUpload` component is a versatile and reusable UI element built using React, Tailwind CSS, and `class-variance-authority (cva)` for managing styles. It allows users to upload multiple images with drag-and-drop support and provides a preview of the uploaded images.
+
+#### Usage
+
+```jsx
+import MultipleImageUpload from "./components/ui/MultipleImageUpload";
+
+function App() {
+  const handleImagesChange = (images) => {
+    console.log("Uploaded images:", images);
+  };
+
+  return (
+    <MultipleImageUpload
+      id="image-upload"
+      className="my-custom-class"
+      onImagesChange={handleImagesChange}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name        | Type       | Default      | Description                                              | Required |
+| ---------------- | ---------- | ------------ | -------------------------------------------------------- | -------- |
+| `id`             | `string`   | `"dropzone"` | The unique identifier for the dropzone element.          | No       |
+| `className`      | `string`   | `""`         | Additional custom classes for the dropzone container.    | No       |
+| `onImagesChange` | `function` | `null`       | The function to handle changes when images are uploaded. | Yes      |
+| `...props`       | `object`   | `null`       | Additional props to be passed to the dropzone container. | No       |
+
+### Example
+
+```jsx
+import MultipleImageUpload from "./components/ui/MultipleImageUpload";
+import { useState } from "react";
+
+function App() {
+  const [images, setImages] = useState([]);
+
+  const handleImagesChange = (newImages) => {
+    setImages(newImages);
+  };
+
+  return (
+    <div className="p-4">
+      <MultipleImageUpload
+        id="image-upload"
+        onImagesChange={handleImagesChange}
+      />
+      <div className="mt-4">
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt={`Uploaded preview ${index + 1}`}
+            className="h-20 w-20 rounded-lg"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+This will render a dropzone for uploading multiple images, and the uploaded images will be displayed as previews below the dropzone.
 
 ## License
 
