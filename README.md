@@ -23,6 +23,8 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [TextAreaWithIcon](#textAreaInputWithIcon)
   - [ImageUpload](#singleImageUpload)
   - [MultipleImageUpload](#multipleImageUpload)
+  - [SelectOption](#singleSelectOption)
+  - [MultiSelectOption](#multiSelectOption)
 - [License](#license)
 
 ## Project Structure
@@ -469,6 +471,8 @@ This will render three DatePicker components with different sizes and styles. Th
 
 The InputText component is a versatile and reusable form input element built using React and Tailwind CSS. It is designed to handle various types of validation, including required fields, minimum and maximum length, and pattern matching.
 
+### Usage
+
 ```jsx
 import InputText from "./components/ui/InputText";
 import { useForm } from "react-hook-form";
@@ -555,6 +559,8 @@ This example will render a text input field for the username with validation for
 ### InputTextWithIcon
 
 The InputTextWithIcon component is a versatile and reusable form input element built using React and Tailwind CSS. It includes support for displaying icons within the input field, handling password visibility toggling, and performing various types of validation, including required fields, minimum and maximum length, and pattern matching.
+
+### Usage
 
 ```jsx
 import InputTextWithIcon from "./components/ui/InputTextWithIcon";
@@ -648,6 +654,8 @@ This example will render a text input field for an email address with validation
 
 The LongTextInput component is a customizable textarea input field built using React and Tailwind CSS. It is designed to handle long text inputs with a flexible number of rows.
 
+### Usage
+
 ```jsx
 import LongTextInput from "./components/ui/LongTextInput";
 
@@ -705,6 +713,8 @@ This example will render a textarea input field for comments with a custom numbe
 ## TextAreaInputWithIcon
 
 The `LongTextInputWithIcon` component is a versatile and reusable textarea element built using React and Tailwind CSS. It supports displaying an icon inside the textarea container and handles user input changes.
+
+### Usage
 
 ```jsx
 const LongTextInputWithIcon = ({
@@ -894,6 +904,138 @@ function App() {
 ```
 
 This will render a dropzone for uploading multiple images, and the uploaded images will be displayed as previews below the dropzone.
+
+### SingleSelectOption
+
+The SingleSelectOption component is a versatile and reusable UI element built using React and Tailwind CSS, with `class-variance-authority (cva)` for managing variants. It provides a dropdown menu for selecting a single option from a list.
+
+#### Usage
+
+```jsx
+import SingleSelectOption from "./components/ui/SingleSelectOption";
+
+function App() {
+  const handleOptionChange = (option) => {
+    console.log("Selected option:", option);
+  };
+
+  const options = [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+  ];
+
+  return (
+    <SingleSelectOption
+      id="select"
+      name="select"
+      options={options}
+      selectedOption={options[0]}
+      onChange={handleOptionChange}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name        | Type       | Default      | Description                                                                                          | Required |
+| ---------------- | ---------- | ------------ | ---------------------------------------------------------------------------------------------------- | -------- |
+| `id`             | `string`   | `"dropzone"` | The unique identifier for the select component.                                                      | No       |
+| `name`           | `string`   | `""`         | The name attribute for the select component.                                                         | No       |
+| `options`        | `Array`    | `[]`         | An array of options for the select menu. Each option should have `value` and `label` properties.     | No       |
+| `selectedOption` | `object`   | `null`       | The currently selected option. Must have `value` and `label` properties.                             | No       |
+| `onChange`       | `function` | `null`       | Callback function triggered when an option is selected. Receives the selected option as an argument. | No       |
+| `className`      | `string`   | `""`         | Additional custom classes for the select container.                                                  | No       |
+| `size`           | `string`   | `"medium"`   | The size of the select component. Options: `"small"`, `"medium"`, `"large"`.                         | No       |
+| `variant`        | `string`   | `"primary"`  | The variant style of the select component. Options: `"primary"`, `"secondary"`, `"danger"`.          | No       |
+| `status`         | `string`   | `"closed"`   | The status of the select component. Options: `"open"`, `"closed"`.                                   | No       |
+| `...props`       | `object`   | `null`       | Additional props to be passed to the select container.                                               | No       |
+
+### Example
+
+```jsx
+<SingleSelectOption
+  id="select"
+  name="select"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+  ]}
+  selectedOption={{ value: "option1", label: "Option 1" }}
+  onChange={(option) => console.log("Selected option:", option)}
+  size="large"
+  variant="secondary"
+  status="open"
+/>
+```
+
+This will render a large secondary select component with the menu open, allowing users to select an option from the provided list.
+
+### MultiSelectOption
+
+The MultiSelectOption component is a versatile UI element built using React and Tailwind CSS, with class-variance-authority (cva) for managing variants. It allows users to select multiple options from a dropdown menu.
+
+### Usage
+
+```jsx
+import MultiSelectOption from "./components/ui/MultiSelectOption";
+
+const options = [
+  { value: "option1", label: "Option 1" },
+  { value: "option2", label: "Option 2" },
+  { value: "option3", label: "Option 3" },
+];
+
+function App() {
+  const handleChange = (selectedOptions) => {
+    console.log(selectedOptions);
+  };
+
+  return (
+    <MultiSelectOption
+      id="multi-select"
+      name="example"
+      options={options}
+      selectedOptions={[]}
+      onChange={handleChange}
+    />
+  );
+}
+```
+
+### Props
+
+| Prop Name         | Type       | Default     | Description                                                                                                          | Required |
+| ----------------- | ---------- | ----------- | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| `id`              | `string`   | `null`      | The unique identifier for the select component.                                                                      | No       |
+| `name`            | `string`   | `""`        | The name attribute for the select component.                                                                         | No       |
+| `options`         | `Array`    | `[]`        | An array of options for the select menu. Each option should have `value` and `label` properties.                     | No       |
+| `selectedOptions` | `Array`    | `[]`        | An array of currently selected options. Each option should have `value` and `label` properties.                      | No       |
+| `onChange`        | `function` | `null`      | Callback function triggered when options are selected or deselected. Receives the updated selections as an argument. | No       |
+| `className`       | `string`   | `""`        | Additional custom classes for the select component.                                                                  | No       |
+| `size`            | `string`   | `"medium"`  | The size of the select component. Options: `"small"`, `"medium"`, `"large"`.                                         | No       |
+| `variant`         | `string`   | `"primary"` | The style variant of the select component. Options: `"primary"`, `"secondary"`, `"danger"`.                          | No       |
+| `status`          | `string`   | `"closed"`  | The open/closed status of the select component. Options: `"open"`, `"closed"`.                                       | No       |
+
+### Example
+
+```jsx
+<MultiSelectOption
+  id="multi-select"
+  name="example"
+  options={[
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ]}
+  selectedOptions={[{ value: "option1", label: "Option 1" }]}
+  onChange={(selectedOptions) => console.log(selectedOptions)}
+  size="large"
+  variant="secondary"
+/>
+```
+
+This will render a large, secondary-styled multi-select dropdown where users can select multiple options.
 
 ## License
 
