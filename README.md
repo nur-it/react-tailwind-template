@@ -17,6 +17,8 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [Breadcrumb](#breadcrumb)
   - [Checkbox](#checkbox)
   - [DatePicker](#datePicker)
+  - [InputText](#inputText)
+  - [InputTextWithIcon](#inputTextWithIcon)
 - [License](#license)
 
 ## Project Structure
@@ -458,6 +460,185 @@ function App() {
 ```
 
 This will render three DatePicker components with different sizes and styles. The first is small with the default style, the second is medium with the primary style, and the third is large with the success style.
+
+### InputText
+
+The InputText component is a versatile and reusable form input element built using React and Tailwind CSS. It is designed to handle various types of validation, including required fields, minimum and maximum length, and pattern matching.
+
+```jsx
+import InputText from "./components/ui/InputText";
+import { useForm } from "react-hook-form";
+
+function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <InputText
+        id="email"
+        name="email"
+        type="email"
+        label="Email Address"
+        placeholder="Enter your email"
+        register={register}
+        required
+        pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i}
+        errors={errors}
+      />
+      <InputText
+        id="password"
+        name="password"
+        type="password"
+        label="Password"
+        placeholder="Enter your password"
+        register={register}
+        required
+        minLength={8}
+        pattern={
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+        }
+        errors={errors}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+### Props
+
+| Prop Name     | Type       | Default  | Description                                                                                      | Required |
+| ------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------ | -------- |
+| `id`          | `string`   | `""`     | The unique identifier for the input element.                                                     | Yes      |
+| `type`        | `string`   | `"text"` | The type of input element.                                                                       | No       |
+| `name`        | `string`   | `""`     | The name attribute for the input element, used for form data submission.                         | Yes      |
+| `label`       | `string`   | `""`     | The label text displayed above the input element.                                                | Yes      |
+| `errors`      | `object`   | `{}`     | An object containing validation errors returned by React Hook Form.                              | Yes      |
+| `pattern`     | `RegExp`   | `null`   | A regular expression pattern for validating the input value.                                     | No       |
+| `register`    | `function` | `null`   | The `register` function from React Hook Form, used to register the input element for validation. | Yes      |
+| `required`    | `boolean`  | `false`  | If true, the input field will be required.                                                       | No       |
+| `maxLength`   | `number`   | `null`   | The maximum length of the input value.                                                           | No       |
+| `minLength`   | `number`   | `null`   | The minimum length of the input value.                                                           | No       |
+| `placeholder` | `string`   | `""`     | The placeholder text for the input element.                                                      | No       |
+
+### Example
+
+```jsx
+<InputText
+  id="username"
+  name="username"
+  type="text"
+  label="Username"
+  placeholder="Enter your username"
+  register={register}
+  required
+  minLength={3}
+  maxLength={15}
+  errors={errors}
+/>
+```
+
+This example will render a text input field for the username with validation for required, minimum length, and maximum length. If any validation fails, appropriate error messages will be displayed.
+
+### InputTextWithIcon
+
+The InputTextWithIcon component is a versatile and reusable form input element built using React and Tailwind CSS. It includes support for displaying icons within the input field, handling password visibility toggling, and performing various types of validation, including required fields, minimum and maximum length, and pattern matching.
+
+```jsx
+import InputTextWithIcon from "./components/ui/InputTextWithIcon";
+import { FiUser, FiLock } from "react-icons/fi";
+import { useForm } from "react-hook-form";
+
+function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <InputTextWithIcon
+        id="username"
+        name="username"
+        type="text"
+        label="Username"
+        icon={<FiUser />}
+        placeholder="Enter your username"
+        register={register}
+        required
+        minLength={3}
+        maxLength={15}
+        errors={errors}
+      />
+      <InputTextWithIcon
+        id="password"
+        name="password"
+        type="password"
+        label="Password"
+        icon={<FiLock />}
+        placeholder="Enter your password"
+        register={register}
+        required
+        minLength={8}
+        pattern={
+          /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+        }
+        errors={errors}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+### Props
+
+| Prop          | Type     | Description                                                                         |
+| ------------- | -------- | ----------------------------------------------------------------------------------- |
+| `id`          | `string` | The `id` of the input field, used for linking the label and input element.          |
+| `icon`        | `node`   | An icon component (e.g., from `react-icons`) to display inside the input.           |
+| `label`       | `string` | The text label associated with the input field.                                     |
+| `name`        | `string` | The `name` attribute for the input, used for form handling.                         |
+| `type`        | `string` | The type of input field (e.g., `text`, `password`).                                 |
+| `errors`      | `object` | Object containing validation errors, usually from a form validation library.        |
+| `pattern`     | `regex`  | Regular expression pattern for input validation.                                    |
+| `required`    | `bool`   | Indicates whether the input field is required.                                      |
+| `register`    | `func`   | Function to register the input with form validation (e.g., from `react-hook-form`). |
+| `minLength`   | `number` | The minimum length of the input value.                                              |
+| `maxLength`   | `number` | The maximum length of the input value.                                              |
+| `placeholder` | `string` | Placeholder text for the input field.                                               |
+
+### Example
+
+```jsx
+<InputTextWithIcon
+  id="email"
+  name="email"
+  type="email"
+  label="Email Address"
+  icon={<FiMail />}
+  placeholder="Enter your email"
+  register={register}
+  required
+  pattern={/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i}
+  errors={errors}
+/>
+```
+
+This example will render a text input field for an email address with validation for required, pattern matching, and other optional constraints. An icon will appear inside the input field, and errors will be displayed if validation fails.
 
 ## License
 
