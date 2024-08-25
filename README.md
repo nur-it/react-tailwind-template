@@ -19,6 +19,7 @@ A starter template for building React applications with Tailwind CSS, Vite, and 
   - [DatePicker](#datePicker)
   - [InputText](#inputText)
   - [InputTextWithIcon](#inputTextWithIcon)
+  - [TextArea](#textAreaInput)
 - [License](#license)
 
 ## Project Structure
@@ -606,8 +607,6 @@ function App() {
 
 ### Props
 
-### Props
-
 | Prop Name     | Type        | Default  | Description                                                                                      | Required |
 | ------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------ | -------- |
 | `id`          | `string`    | `""`     | The unique identifier for the input element.                                                     | Yes      |
@@ -641,6 +640,64 @@ function App() {
 ```
 
 This example will render a text input field for an email address with validation for required, pattern matching, and other optional constraints. An icon will appear inside the input field, and errors will be displayed if validation fails.
+
+### TextAreaInput
+
+The LongTextInput component is a customizable textarea input field built using React and Tailwind CSS. It is designed to handle long text inputs with a flexible number of rows.
+
+```jsx
+import LongTextInput from "./components/ui/LongTextInput";
+
+function App() {
+  const [text, setText] = useState("");
+
+  const handleChange = (e) => {
+    setText(e.target.value);
+  };
+
+  return (
+    <form>
+      <LongTextInput
+        id="description"
+        name="description"
+        value={text}
+        label="Description"
+        textRow={5}
+        placeholder="Enter your description here"
+        handleChange={handleChange}
+      />
+    </form>
+  );
+}
+```
+
+### Props
+
+| Prop Name      | Type       | Default | Description                                                                 | Required |
+| -------------- | ---------- | ------- | --------------------------------------------------------------------------- | -------- |
+| `id`           | `string`   | `""`    | The unique identifier for the textarea element.                             | Yes      |
+| `name`         | `string`   | `""`    | The name attribute for the textarea element, used for form data submission. | Yes      |
+| `value`        | `string`   | `""`    | The current value of the textarea input.                                    | Yes      |
+| `label`        | `string`   | `""`    | The label text displayed above the textarea element.                        | Yes      |
+| `textRow`      | `number`   | `3`     | The number of rows for the textarea element.                                | No       |
+| `placeholder`  | `string`   | `""`    | The placeholder text for the textarea element.                              | No       |
+| `handleChange` | `function` | `null`  | The function to handle the change event of the textarea input.              | Yes      |
+
+### Example
+
+```jsx
+<LongTextInput
+  id="comment"
+  name="comment"
+  value={commentValue}
+  label="Comment"
+  textRow={6}
+  placeholder="Write your comment here..."
+  handleChange={handleCommentChange}
+/>
+```
+
+This example will render a textarea input field for comments with a custom number of rows. The handleChange function will update the state as the user types in the textarea.
 
 ## License
 
