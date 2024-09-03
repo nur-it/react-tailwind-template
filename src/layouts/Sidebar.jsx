@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 // internal imports
 import logo from "../assets/images/logo.svg";
 import { useSidebar } from "../contexts/SidebarContext";
+import { componentLists } from "../data/sidebar.data";
 
 const Sidebar = () => {
   // react hook
@@ -39,20 +40,20 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`h-screen bg-dark duration-300 z-[9999] ease-in-out ${
+      className={`z-[9999] h-screen bg-dark duration-300 ease-in-out ${
         isMobile && activeSidebar
-          ? "absolute -left-[100%] top-0 "
-          : `flex w-[18.125rem] left-0 top-0 ${
+          ? "absolute -left-[100%] top-0"
+          : `left-0 top-0 flex w-[18.125rem] ${
               isMobile ? "absolute" : "relative"
             }`
       }`}
     >
-      <div className="w-full no-scrollbar flex flex-col overflow-y-scroll duration-300 ease-linear">
+      <div className="no-scrollbar flex w-full flex-col overflow-y-scroll duration-300 ease-linear">
         {/* sidebar header  */}
-        <div className="py-5 px-6 sticky top-0 bg-dark z-50 flex justify-between items-center">
+        <div className="sticky top-0 z-50 flex items-center justify-between bg-dark px-6 py-5">
           <a className="inline-flex items-center gap-3" href="/">
             <img src={logo} alt="logo" />{" "}
-            <span className="text-[24px] text-white font-semibold">
+            <span className="text-[24px] font-semibold text-white">
               NurAdmin
             </span>
           </a>
@@ -63,10 +64,10 @@ const Sidebar = () => {
 
         {/* Sidebar menu  */}
         <div className="">
-          <nav className="px-4 lg:px-6 pb-4 pt-2 flex flex-col gap-3">
+          <nav className="flex flex-col gap-3 px-4 pb-4 pt-2 lg:px-6">
             {/* Menu Group  */}
             <div className="">
-              <h3 className="mb-4 ml-4 text-sm font-medium text-secondary uppercase">
+              <h3 className="mb-4 ml-4 text-sm font-medium uppercase text-secondary">
                 Menu
               </h3>
               <ul className="flex flex-col gap-1.5">
@@ -94,12 +95,12 @@ const Sidebar = () => {
                   <button
                     type="button"
                     onClick={() => handleMenuClick("menu1")}
-                    className={`group w-full relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover ${
+                    className={`group relative flex w-full items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover ${
                       activeMenu === "menu1" ? "bg-menuHover" : ""
                     }`}
                   >
                     <FaTasks className="text-xl" />
-                    Forms{" "}
+                    Components{" "}
                     <MdKeyboardArrowDown
                       className={`ml-auto text-xl ${
                         activeMenu === "menu2" ? "rotate-180" : ""
@@ -111,23 +112,16 @@ const Sidebar = () => {
                 {/* Sub-menus  */}
                 {activeMenu === "menu1" && (
                   <ul className="flex flex-col gap-2.5 pl-10">
-                    <li onClick={handleHideSidebar}>
-                      <Link
-                        to="/form-element"
-                        className="group relative flex items-center gap-2.5 rounded-md text-md font-normal text-subMenu/50 duration-300 ease-in-out hover:text-white"
-                      >
-                        Form Elements
-                      </Link>
-                    </li>
-
-                    <li onClick={handleHideSidebar}>
-                      <Link
-                        to="/form-layout"
-                        className="group relative flex items-center gap-2.5 rounded-md text-md font-normal text-subMenu/50 duration-300 ease-in-out hover:text-white"
-                      >
-                        From layout
-                      </Link>
-                    </li>
+                    {componentLists.map((name, index) => (
+                      <li key={index} onClick={handleHideSidebar}>
+                        <Link
+                          to={`/components/${name.path}`}
+                          className="text-md group relative flex items-center gap-2.5 rounded-md font-normal text-subMenu/50 duration-300 ease-in-out hover:text-white"
+                        >
+                          {name.label}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 )}
               </ul>
