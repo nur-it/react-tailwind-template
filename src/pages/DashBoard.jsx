@@ -1,49 +1,8 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
-/* import TestTable from "../components/screens/TestTable";
-import { RightArrow } from "../components/shared/svg/RightArrow";
-import Badge from "../components/ui/Badge";
-import Breadcrumb from "../components/ui/Breadcrumb";
-import Button from "../components/ui/Button";
-import Checkbox from "../components/ui/Checkbox";
-import DatePicker from "../components/ui/DatePicker";
-import MultipleImageUpload from "../components/ui/MultipleImageUpload";
-import MultiSelectOption from "../components/ui/MultiSelectOption";
-import Pagination from "../components/ui/Pagination";
-import RadioButton from "../components/ui/RadioButton";
-import SingleImageUpload from "../components/ui/SingleImageUpload";
-import SingleSelectOption from "../components/ui/SingleSelectOption";
-import ToggleButton from "../components/ui/ToggleButton"; */
 
 const DashBoard = () => {
-  const summeryData = [
-    {
-      title: "Total views",
-      count: "3.456K",
-      percentage: "0.43%",
-      status: true,
-    },
-    {
-      title: "Total Profit",
-      count: "$45,2K ",
-      percentage: "4.35%",
-      status: true,
-    },
-    {
-      title: "Total Product",
-      count: "2.450 ",
-      percentage: "2.59%",
-      status: true,
-    },
-    {
-      title: "Total Users",
-      count: "3.456",
-      percentage: "0.88%",
-      status: false,
-    },
-  ];
-
   const [date, setDate] = useState(null);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,6 +49,18 @@ const DashBoard = () => {
             >
               <h3 className="mb-6 text-2xl font-semibold decoration-primary underline-offset-2 group-hover:underline">
                 Alert
+              </h3>
+              <p className="text-sm text-gray-400">
+                This will render a large success alert with an icon and a close
+                button.
+              </p>
+            </Link>
+            <Link
+              to="/components/badge"
+              className="border-stroke group inline-flex min-h-44 flex-col items-center justify-center rounded-sm border bg-white px-7 py-6 text-center shadow-md"
+            >
+              <h3 className="mb-6 text-2xl font-semibold decoration-primary underline-offset-2 group-hover:underline">
+                Badge
               </h3>
               <p className="text-sm text-gray-400">
                 This will render a large success alert with an icon and a close

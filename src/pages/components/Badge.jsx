@@ -5,50 +5,50 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vs } from "react-syntax-highlighter/dist/esm/styles/prism"; // VS Code-like theme
 import remarkGfm from "remark-gfm";
-import Alert from "../../components/ui/Alert";
+import Badge from "../../components/ui/Badge";
 
-const AlertPage = () => {
+const BadgePage = () => {
   const [copied, setCopied] = useState(false);
 
   const markdown = `
-### Alert
+### Badge
 
-The Alert component is a versatile and reusable UI element built using React and Tailwind CSS, with \`class-variance-authority (cva)\` for managing variants. It displays a message with an optional icon and close button, making it suitable for notifications and alerts.
+The Badge component is a versatile and reusable UI element built using React and Tailwind CSS, with \`class-variance-authority (cva)\` for managing variants. It is used to display labels or notifications in various styles.
 
 #### Usage
 
 \`\`\`jsx
-import Alert from "./components/ui/Alert";
-import { MdCheckCircle } from "react-icons/md";
+import Badge from "./components/ui/Badge";
 
 function App() {
   return (
-    <Alert type="success" size="large" closable>
-      This is a success alert!
-    </Alert>
+    <div>
+      <Badge color="success" size="large">
+        Success
+      </Badge>
+      <Badge color="danger" size="small">
+        Danger
+      </Badge>
+    </div>
   );
 }
 \`\`\`
 
-
 ### Props
 
-| Prop Name   | Type      | Default     | Description                                                                   | Required |
-| ----------- | --------- | ----------- | ----------------------------------------------------------------------------- | -------- |
-| \`type\`      | string    | \`"primary"\` | The alert type. Options: \`"primary"\`, \`"secondary"\`, \`"success"\`, \`"danger"\`. | No       |
-| \`size\`      | string    | \`"medium"\`  | The alert size. Options: \`"small"\`, \`"medium"\`, \`"large"\`.                    | No       |
-| \`closable\`  | boolean   | \`false\`     | If true, a close button will be displayed to dismiss the alert.               | No       |
-| \`children\`  | ReactNode | \`null\`      | The content inside the alert.                                                 | Yes      |
-| \`className\` | string    | \`""\`        | Additional custom classes for the alert.                                      | No       |
+| Prop Name   | Type      | Default     | Description                                                                                        | Required |
+| ----------- | --------- | ----------- | -------------------------------------------------------------------------------------------------- | -------- |
+| \`color\`     | string    | \`"primary"\` | The badge color. Options: \`"primary"\`, \`"secondary"\`, \`"success"\`, \`"warn"\`, \`"danger"\`, \`"info"\`. | No       |
+| \`size\`      | string    | \`"medium"\`  | The badge size. Options: \`"small"\`, \`"medium"\`, \`"large"\`.                                         | No       |
+| \`children\`  | ReactNode | \`null\`      | The content inside the badge.                                                                      | Yes      |
+| \`className\` | string    | \`""\`        | Additional custom classes for the badge.                                                           | No       |
 
-  `;
+`;
 
   // Code snippets for live preview
-  const codeSnippets = [
-    `<Alert type="primary" size="medium" closable>primary</Alert>`,
-  ];
+  const codeSnippets = [`<Badge color="success" size="large">Success</Badge> `];
 
-  return (  
+  return (
     <div className="mt-6">
       {/* Markdown content */}
       <div className="markdown mt-10 rounded bg-white p-8 shadow">
@@ -97,7 +97,7 @@ function App() {
           <h4 className="mb-2 text-lg font-bold">Live Editor</h4>
           {codeSnippets.map((codeSnippet, index) => (
             <div key={index} className="mb-6">
-              <LiveProvider code={codeSnippet} scope={{ Alert }}>
+              <LiveProvider code={codeSnippet} scope={{ Badge }}>
                 <div className="flex flex-col md:flex-row">
                   <div className="w-full bg-gray-800 p-4 text-white md:w-1/2">
                     <div className="relative">
@@ -130,4 +130,4 @@ function App() {
   );
 };
 
-export default AlertPage;
+export default BadgePage;
