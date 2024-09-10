@@ -11,6 +11,8 @@ import SingIn from "../pages/auth/SingIn";
 import AlertPage from "../pages/components/Alert";
 import BadgePage from "../pages/components/Badge";
 import BreadcrumbPage from "../pages/components/Breadcrumb";
+import ButtonPage from "../pages/components/Button";
+import CheckboxPage from "../pages/components/Checkbox";
 
 export const router = createBrowserRouter([
   {
@@ -49,12 +51,20 @@ export const router = createBrowserRouter([
         element: <AlertPage />,
       },
       {
+        path: "button",
+        element: <ButtonPage />,
+      },
+      {
         path: "badge",
         element: <BadgePage />,
       },
       {
         path: "breadcrumb",
         element: <BreadcrumbPage />,
+      },
+      {
+        path: "checkbox",
+        element: <CheckboxPage />,
       },
     ],
   },
