@@ -119,12 +119,25 @@ This will render a large success alert with an icon and a close button.
           {codeSnippets.map((codeSnippet, index) => (
             <div key={index} className="mb-6">
               <LiveProvider code={codeSnippet} scope={{ Alert }}>
-                <div className="flex flex-wrap">
-                  <div className="w-1/2 bg-gray-800 p-4 text-white">
-                    <h5 className="mb-2 font-bold">Editor</h5>
-                    <LiveEditor className="rounded bg-gray-800 p-2 text-white" />
+                <div className="flex flex-col md:flex-row">
+                  <div className="w-full bg-gray-800 p-4 text-white md:w-1/2">
+                    <div className="relative">
+                      <h5 className="mb-2 font-bold">Editor</h5>
+                      <CopyToClipboard
+                        text={codeSnippet}
+                        onCopy={() => setCopied(true)}
+                      >
+                        <button
+                          className="absolute right-2 top-2 rounded bg-gray-200 px-2 py-1 font-bold text-gray-800 opacity-0 transition hover:bg-gray-300"
+                          onMouseLeave={() => setCopied(false)}
+                        >
+                          {copied ? "Copied!" : "Copy"}
+                        </button>
+                      </CopyToClipboard>
+                      <LiveEditor className="rounded bg-gray-800 p-2 text-white" />
+                    </div>
                   </div>
-                  <div className="w-1/2 bg-gray-100 p-4">
+                  <div className="w-full bg-gray-100 p-4 md:w-1/2">
                     <h5 className="mb-2 font-bold">Preview</h5>
                     <LivePreview />
                   </div>
