@@ -10,6 +10,7 @@ import SignUp from "../pages/auth/SignUp";
 import SingIn from "../pages/auth/SingIn";
 import AlertPage from "../pages/components/Alert";
 import BadgePage from "../pages/components/Badge";
+import BreadcrumbPage from "../pages/components/Breadcrumb";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
       {
         path: "badge",
         element: <BadgePage />,
+      },
+      {
+        path: "breadcrumb",
+        element: <BreadcrumbPage />,
       },
     ],
   },
