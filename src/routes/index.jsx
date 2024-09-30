@@ -13,6 +13,8 @@ import BadgePage from "../pages/components/Badge";
 import BreadcrumbPage from "../pages/components/Breadcrumb";
 import ButtonPage from "../pages/components/Button";
 import CheckboxPage from "../pages/components/Checkbox";
+import InputPage from "../pages/components/Input";
+import RadioPage from "../pages/components/Radio";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +67,14 @@ export const router = createBrowserRouter([
       {
         path: "checkbox",
         element: <CheckboxPage />,
+      },
+      {
+        path: "input",
+        element: <InputPage />,
+      },
+      {
+        path: "radio",
+        element: <RadioPage />,
       },
     ],
   },
