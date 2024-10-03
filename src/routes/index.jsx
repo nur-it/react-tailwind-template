@@ -15,6 +15,7 @@ import ButtonPage from "../pages/components/Button";
 import CheckboxPage from "../pages/components/Checkbox";
 import InputPage from "../pages/components/Input";
 import RadioPage from "../pages/components/Radio";
+import RoleManagement from "../pages/role/RoleManagement";
 import ProtectedRoute from "./private.route";
 
 export const router = createBrowserRouter([
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
       {
         path: "/settings",
         element: <Settings />, // Protect this route
+      },
+      {
+        path: "/admin/settings/role-management",
+        element: <RoleManagement />, // Protect this route
       },
     ],
   },

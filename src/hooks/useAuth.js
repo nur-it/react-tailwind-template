@@ -9,6 +9,7 @@ const useAuth = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // State for general loading
   const navigate = useNavigate();
 
   const {
@@ -29,16 +30,19 @@ const useAuth = () => {
 
     // Redirect to home page
     navigate("/");
+    setIsLoading(false); // Stop loading once successful
   };
 
   const handleError = (errorMessage) => {
     setError(errorMessage);
     setIsAuthenticated(false); // Reset isAuthenticated state
+    setIsLoading(false); // Stop loading if error occurs
   };
 
   // Mutation for sign-in
   const signInMutation = useMutation({
     mutationFn: AdminServices.adminLoginEmail, // Define the mutation function
+    onMutate: () => setIsLoading(true), // Set loading state before starting mutation
     onSuccess: (res) => handleSuccess(res.data), // Callbacks for success
     onError: () => handleError("Login failed. Please check your credentials."), // Callbacks for error
   });
@@ -46,6 +50,7 @@ const useAuth = () => {
   // Mutation for sign-up
   const signUpMutation = useMutation({
     mutationFn: AdminServices.adminRegister, // Define the mutation function
+    onMutate: () => setIsLoading(true), // Set loading state before starting mutation
     onSuccess: (res) => handleSuccess(res.data), // Callbacks for success
     onError: () => handleError("Sign-up failed. Please try again."), // Callbacks for error
   });
@@ -74,6 +79,7 @@ const useAuth = () => {
     setIsAuthenticated(false);
     Cookies.remove("accessToken");
     Cookies.remove("refreshToken");
+    setIsLoading(false); // Ensure loading is reset during sign-out
 
     // Redirect to login page
     navigate("/auth/sign-in");
@@ -110,7 +116,7 @@ const useAuth = () => {
     handleSignUpSubmit,
     isAuthenticated,
     user,
-    loading: signInMutation.isLoading || signUpMutation.isLoading, // Track loading state
+    isLoading, // Export loading state for external usage
     error,
     signOut,
   };

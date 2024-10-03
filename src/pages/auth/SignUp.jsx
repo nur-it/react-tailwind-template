@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { BiLoaderCircle } from "react-icons/bi";
 import { FiLogIn } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import signInSvg from "../../assets/images/illustration-03.svg";
@@ -8,8 +9,14 @@ import InputText from "../../components/ui/InputText";
 import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
-  const { register, handleSubmit, handleSignUpSubmit, errors, watch } =
-    useAuth();
+  const {
+    register,
+    handleSubmit,
+    handleSignUpSubmit,
+    errors,
+    watch,
+    isLoading,
+  } = useAuth();
   const [isShowPassword, setIsShowPassword] = useState(true);
 
   return (
@@ -78,7 +85,7 @@ const SignUp = () => {
                         label="Password"
                         type={isShowPassword ? "password" : "text"}
                         error={errors.password}
-                        placeholder="8 Characters, 1 Capital letter"
+                        placeholder="Enter your password"
                         required
                       />
                     </div>
@@ -100,11 +107,16 @@ const SignUp = () => {
 
                     <div className="mb-5">
                       <button
+                        disabled={isLoading}
                         type="submit"
                         className="flex w-full items-center justify-center gap-2 rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
                       >
-                        <FiLogIn className="text-xl" />
-                        Create account
+                        {!isLoading ? (
+                          <FiLogIn className="text-xl" />
+                        ) : (
+                          <BiLoaderCircle />
+                        )}
+                        {isLoading ? "Loading..." : "Create Account"}
                       </button>
                     </div>
 
