@@ -33,7 +33,7 @@ const useAuth = () => {
 
   const handleError = (errorMessage) => {
     setError(errorMessage);
-    setIsAuthenticated(false);
+    setIsAuthenticated(false); // Reset isAuthenticated state
   };
 
   // Mutation for sign-in
@@ -83,10 +83,14 @@ const useAuth = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
-      setIsAuthenticated(true);
+      try {
+        setUser(JSON.parse(storedUser));
+        setIsAuthenticated(true);
+      } catch (error) {
+        console.error("Error parsing stored user data:", error);
+      }
     }
-  }, []);
+  }, []); // Add empty dependency array to prevent unnecessary re-renders
 
   // Save user to localStorage when the user state changes
   useEffect(() => {
