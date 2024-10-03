@@ -8,7 +8,8 @@ import InputText from "../../components/ui/InputText";
 import useAuth from "../../hooks/useAuth";
 
 const SignIn = () => {
-  const { register, handleSubmit, handleSignInSubmit, errors } = useAuth();
+  const { register, handleSubmit, handleSignInSubmit, errors, isLoading } =
+    useAuth();
 
   return (
     <>
@@ -55,11 +56,12 @@ const SignIn = () => {
 
                     <div className="mb-5">
                       <button
+                        disabled={isLoading}
                         type="submit"
                         className="flex w-full items-center justify-center gap-2 rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90"
                       >
                         <FiLogIn className="text-xl" />
-                        Sign In
+                        {isLoading ? "Signing In..." : "Sign In"}
                       </button>
                     </div>
 
