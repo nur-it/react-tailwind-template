@@ -2,24 +2,24 @@ import requests from "./httpService";
 
 const AdminServices = {
   // admin login
-  adminLogin: (body) => {
-    return requests.post("/auth/register", body);
+  adminLoginEmail: (body) => {
+    return requests.post("/auth/login/email", body);
   },
   // admin register
-  adminRegister: () => {
-    return requests.post("/auth/login");
+  adminRegister: (body) => {
+    return requests.post("/auth/register", body);
   },
   // admin change password
-  adminChangePassword: () => {
-    return requests.post("/auth/change-password");
+  adminChangePassword: (body) => {
+    return requests.post("/auth/change-password", body);
   },
   // admin update
-  adminUpdate: () => {
-    return requests.put("/users");
+  adminUpdate: (body) => {
+    return requests.put("/users", body);
   },
   // admin delete
-  adminDelete: () => {
-    return requests.delete("/users");
+  adminDelete: (id) => {
+    return requests.delete("/users", id);
   },
   // get all admin
   getAllAdmin: () => {
