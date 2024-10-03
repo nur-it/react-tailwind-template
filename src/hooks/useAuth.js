@@ -59,15 +59,13 @@ const useAuth = () => {
   };
 
   // Handle sign-up submission
-  const handleSignUpSubmit = (data) => {
+  const handleSignUpSubmit = ({ name, email, password }) => {
     signUpMutation.mutate({
-      name: data.name,
-      email: data.email,
-      password: data.password,
+      name,
+      email,
+      password,
       role: "66fcb83acabfa342b9e35081",
     });
-
-    // console.log(data);
   };
 
   // Handle sign-out
