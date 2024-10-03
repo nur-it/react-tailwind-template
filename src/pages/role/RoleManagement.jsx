@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Heading from "../../components/screens/Role/Heading";
+import RoleHeading from "../../components/screens/Role/RoleHeading";
 import RoleListsTable from "../../components/screens/Role/RoleListsTable";
 
 const RoleManagement = () => {
@@ -11,7 +11,7 @@ const RoleManagement = () => {
         <title>Role Management | NurAdmin</title>
       </Helmet>
       <section className="container-fluid p-4 lg:p-10">
-        <Heading />
+        <RoleHeading addRoleLink="/admin/settings/users-permissions/roles/new" />
         <RoleListsTable />
       </section>
     </>

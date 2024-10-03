@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
         element: <RoleManagement />, // Protect this route
       },
       {
-        path: "/admin/settings/role-management/add-new-role",
+        path: "/admin/settings/users-permissions/roles/new",
         element: <AddNewRole />,
       },
     ],
