@@ -1,24 +1,31 @@
 import { FiLogOut, FiSettings, FiUser } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+import useAuth from "../../../hooks/useAuth";
 const UserDropDown = ({ handleDropDown }) => {
-  // handle click
+  const { signOut } = useAuth(); // Get the signOut function from useAuth
+
+  // handle click to stop propagation
   const handleClick = (event) => {
-    // Prevent the click event from bubbling up to the parent
     event.stopPropagation();
+  };
+
+  // handle logout
+  const handleLogout = () => {
+    signOut(); // Call the signOut function to clear user data and cookies
+    handleDropDown(); // Optionally close the dropdown
   };
 
   return (
     <div
       onClick={handleClick}
-      className="absolute right-0 mt-4 flex w-64 flex-col rounded-sm border border-stroke bg-white shadow-md"
+      className="border-stroke absolute right-0 mt-4 flex w-64 flex-col rounded-sm border bg-white shadow-md"
     >
-      <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7">
+      <ul className="border-stroke flex flex-col gap-5 border-b px-6 py-7">
         <li>
           <Link
             to="/profile"
             onClick={handleDropDown}
-            className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base text-secondary"
+            className="flex items-center gap-3 text-sm font-medium text-secondary duration-300 ease-in-out hover:text-primary lg:text-base"
           >
             <FiUser className="text-xl" />
             My Profile
@@ -29,7 +36,7 @@ const UserDropDown = ({ handleDropDown }) => {
           <Link
             to="/settings"
             onClick={handleDropDown}
-            className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base  text-secondary"
+            className="flex items-center gap-3 text-sm font-medium text-secondary duration-300 ease-in-out hover:text-primary lg:text-base"
           >
             <FiSettings className="text-xl" />
             Account Settings
@@ -37,7 +44,10 @@ const UserDropDown = ({ handleDropDown }) => {
         </li>
       </ul>
 
-      <button className="flex items-center gap-3 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base  text-secondary">
+      <button
+        onClick={handleLogout} // Attach the logout handler
+        className="flex items-center gap-3 px-6 py-4 text-sm font-medium text-secondary duration-300 ease-in-out hover:text-primary lg:text-base"
+      >
         <FiLogOut className="text-xl" />
         Log Out
       </button>

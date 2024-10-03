@@ -15,11 +15,16 @@ import ButtonPage from "../pages/components/Button";
 import CheckboxPage from "../pages/components/Checkbox";
 import InputPage from "../pages/components/Input";
 import RadioPage from "../pages/components/Radio";
+import ProtectedRoute from "./private.route";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: (
+      <ProtectedRoute>
+        <RootLayout />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
@@ -28,11 +33,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: <Profile />, // Protect this route
       },
       {
         path: "/settings",
-        element: <Settings />,
+        element: <Settings />, // Protect this route
       },
     ],
   },
