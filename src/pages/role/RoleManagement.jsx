@@ -2,8 +2,12 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import RoleHeading from "../../components/screens/Role/RoleHeading";
 import RoleListsTable from "../../components/screens/Role/RoleListsTable";
+import useRoles from "../../hooks/useRoles";
 
 const RoleManagement = () => {
+  const { roles } = useRoles();
+
+  console.log(roles);
   return (
     <>
       {" "}
