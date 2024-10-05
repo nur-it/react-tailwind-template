@@ -44,7 +44,7 @@ instance.interceptors.response.use(
       // Optionally, you could redirect the user to the login page or show a message
       alert("Session expired. Please log in again.");
       // You can use window.location to redirect, or a navigate function from React Router
-      window.location.href = "/login"; // Assuming you have a login route
+      window.location.href = "/auth/sign-in"; // Assuming you have a login route
     }
 
     return Promise.reject(error);
