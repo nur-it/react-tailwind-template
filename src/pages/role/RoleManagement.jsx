@@ -5,9 +5,7 @@ import RoleListsTable from "../../components/screens/Role/RoleListsTable";
 import useRoles from "../../hooks/useRoles";
 
 const RoleManagement = () => {
-  const { roles } = useRoles();
 
-  console.log(roles);
   return (
     <>
       {" "}
@@ -16,7 +14,7 @@ const RoleManagement = () => {
       </Helmet>
       <section className="container-fluid p-4 lg:p-10">
         <RoleHeading addRoleLink="/admin/settings/users-permissions/roles/new" />
-        <RoleListsTable />
+        <RoleListsTable  />
       </section>
     </>
   );
