@@ -27,7 +27,7 @@ const AccordionRolePermission = ({ setSelectedPermissions }) => {
   return (
     <div className="mt-10 flex w-full flex-col gap-4 md:gap-8">
       {permissions.map((data, index) => (
-        <article key={data._id} className="rounded border border-primary/20 ">
+        <article key={data._id} className="rounded border border-primary/20">
           <div
             className="flex w-full cursor-pointer items-center justify-between gap-2 rounded p-3"
             onClick={() => handleAccordionToggle(index)}

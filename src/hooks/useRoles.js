@@ -75,8 +75,8 @@ const useRoles = () => {
     roles,
     error,
     isLoading,
-    success,
     handleCreateRole,
+    success,
     handleUpdateRole,
   };
 };

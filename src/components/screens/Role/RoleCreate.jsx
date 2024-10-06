@@ -19,6 +19,7 @@ const RoleCreate = ({
             <InputText
               label="Name"
               name={name}
+              value={name}
               type="text"
               onChange={(e) => setName(e.target.value)}
               id="name"
@@ -30,6 +31,7 @@ const RoleCreate = ({
             <LongTextInput
               label="Description"
               name={description}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
               type="text"
               id="description"
