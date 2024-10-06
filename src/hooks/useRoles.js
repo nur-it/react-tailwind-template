@@ -48,6 +48,25 @@ const useRoles = () => {
     }
   };
 
+  // update role
+
+  const handleUpdateRole = async (data, id) => {
+    try {
+      setIsLoading(true);
+      const response = await RoleServices.updateRole(data, id);
+      setRoles((prevRoles) =>
+        prevRoles.map((role) => (role._id === id ? response.data : role)),
+      );
+      // Redirect to role management page
+      navigate("/admin/settings/role-management");
+      setSuccess(true);
+    } catch (error) {
+      setError(error.message || "Failed to update role");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getRoles(); // Automatically fetch roles on component mount
   }, []);
@@ -56,8 +75,9 @@ const useRoles = () => {
     roles,
     error,
     isLoading,
-    handleCreateRole,
     success,
+    handleCreateRole,
+    handleUpdateRole,
   };
 };
 
