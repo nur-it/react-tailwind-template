@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const ActionsList = ({ action }) => {
+const ActionsList = ({ action, setPermissions }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
+    setPermissions(action._id); // Push or remove the action._id from permissions
   };
 
   return (
@@ -12,6 +13,7 @@ const ActionsList = ({ action }) => {
       <input
         type="checkbox"
         className="hidden"
+        checked={isChecked}
         onChange={handleCheckboxChange}
       />
       <div className="relative">
@@ -79,7 +81,7 @@ const ActionsList = ({ action }) => {
         </span>
       </div>
 
-      <span className="text-[1.2rem] text-[#424242]">{action}</span>
+      <span className="text-[1.2rem] text-[#424242]">{action.action}</span>
     </label>
   );
 };

@@ -3,7 +3,13 @@ import InputText from "../../ui/InputText";
 import LongTextInput from "../../ui/LongTextInput";
 import AccordionRolePermission from "./AccordionRolePermission";
 
-const RoleCreate = () => {
+const RoleCreate = ({
+  setSelectedPermissions,
+  name,
+  description,
+  setName,
+  setDescription,
+}) => {
   return (
     <section className="pt-16">
       <div className="details bg-primary/5 p-4 lg:p-8">
@@ -12,8 +18,10 @@ const RoleCreate = () => {
           <div className="relative">
             <InputText
               label="Name"
-              name="name"
+              name={name}
+              value={name}
               type="text"
+              onChange={(e) => setName(e.target.value)}
               id="name"
               required={true}
               className="border border-primary/50 bg-transparent"
@@ -22,7 +30,9 @@ const RoleCreate = () => {
           <div className="relative">
             <LongTextInput
               label="Description"
-              name="description"
+              name={description}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               type="text"
               id="description"
               textRow={5}
@@ -40,7 +50,9 @@ const RoleCreate = () => {
             <p className="text-sm">
               Only actions bound by a route are listed below.
             </p>
-            <AccordionRolePermission />
+            <AccordionRolePermission
+              setSelectedPermissions={setSelectedPermissions}
+            />
           </div>
           <div className="bg-secondary/5 p-4 md:col-span-3">
             <h3 className="text-lg font-medium">Advanced settings</h3>
