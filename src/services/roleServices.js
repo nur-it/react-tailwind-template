@@ -13,6 +13,11 @@ const RoleServices = {
   updateRole: (body, id) => {
     return requests.put(`/roles/${id}`, body);
   },
+
+  // delete role
+  deleteRole: (id) => {
+    return requests.delete(`/roles/${id}`);
+  },
 };
 
 export default RoleServices;

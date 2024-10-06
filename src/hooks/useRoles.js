@@ -67,6 +67,20 @@ const useRoles = () => {
     }
   };
 
+  // delete role
+
+  const handleDeleteRole = async (id) => {
+    try {
+      setIsLoading(true);
+      await RoleServices.deleteRole(id);
+      setRoles((prevRoles) => prevRoles.filter((role) => role._id !== id));
+    } catch (error) {
+      setError(error.message || "Failed to delete role");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getRoles(); // Automatically fetch roles on component mount
   }, []);
@@ -78,6 +92,7 @@ const useRoles = () => {
     handleCreateRole,
     success,
     handleUpdateRole,
+    handleDeleteRole,
   };
 };
 
