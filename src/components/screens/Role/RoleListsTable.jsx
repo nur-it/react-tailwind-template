@@ -1,6 +1,6 @@
 import React from "react";
 import { BiLoader } from "react-icons/bi";
-import { TiEdit } from "react-icons/ti";
+import { TiEdit, TiUserDelete } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import useRoles from "../../../hooks/useRoles";
 import Button from "../../ui/Button";
@@ -14,7 +14,7 @@ import {
 } from "../../ui/Table";
 
 const RoleListsTable = () => {
-  const { roles, isLoading, error } = useRoles();
+  const { roles, isLoading, error, handleDeleteRole } = useRoles();
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -27,6 +27,13 @@ const RoleListsTable = () => {
       </div>
     );
   }
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this role?")) {
+      handleDeleteRole(id);
+    }
+    navigate("/admin/settings/role-management");
+  };
 
   return (
     <section className="pt-12">
@@ -49,17 +56,26 @@ const RoleListsTable = () => {
                 </TableCell>
                 <TableCell>{role?.permissions?.length} user</TableCell>
                 <TableCell>
-                  <Button
-                    onClick={() =>
-                      navigate(
-                        `/admin/settings/users-permissions/roles/edit/${role._id}`,
-                      )
-                    }
-                    size="small"
-                    className="bg-transparent text-black/50"
-                  >
-                    <TiEdit className="mx-auto text-xl" />
-                  </Button>
+                  <div className="flex items-center justify-center">
+                    <Button
+                      onClick={() =>
+                        navigate(
+                          `/admin/settings/users-permissions/roles/edit/${role._id}`,
+                        )
+                      }
+                      size="small"
+                      className="bg-transparent text-black/50"
+                    >
+                      <TiEdit className="mx-auto text-xl" />
+                    </Button>
+                    <Button
+                      onClick={() => handleDelete(role._id)}
+                      size="small"
+                      className="bg-transparent text-red-400"
+                    >
+                      <TiUserDelete className="mx-auto text-xl" />
+                    </Button>
+                  </div>
                 </TableCell>
               </TableRow>
             ))}
