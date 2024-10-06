@@ -7,8 +7,6 @@ const usePermissions = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(permissions);
-
   const getPermissions = async () => {
     try {
       setIsLoading(true);

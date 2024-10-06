@@ -1,11 +1,15 @@
 import Cookies from "js-cookie"; // Import js-cookie
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import RoleServices from "../services/roleServices";
 
 const useRoles = () => {
   const [roles, setRoles] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const navigate = useNavigate();
 
   const getRoles = async () => {
     try {
@@ -27,6 +31,23 @@ const useRoles = () => {
     }
   };
 
+  // create role
+
+  const handleCreateRole = async (data) => {
+    try {
+      setIsLoading(true);
+      const response = await RoleServices.createRole(data);
+      setRoles((prevRoles) => [...prevRoles, response.data]);
+      // Redirect to role management page
+      navigate("/admin/settings/role-management");
+      setSuccess(true);
+    } catch (error) {
+      setError(error.message || "Failed to create role");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     getRoles(); // Automatically fetch roles on component mount
   }, []);
@@ -35,6 +56,8 @@ const useRoles = () => {
     roles,
     error,
     isLoading,
+    handleCreateRole,
+    success,
   };
 };
 

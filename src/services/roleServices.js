@@ -6,8 +6,7 @@ const RoleServices = {
   },
 
   createRole: (body) => {
-    // return requests.post("/roles", body);
-    console.log(body);
+    return requests.post("/roles", body);
   },
 };
 

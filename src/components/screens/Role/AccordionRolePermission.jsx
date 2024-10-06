@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import usePermissions from "../../../hooks/usepermissions";
-import useRoles from "../../../hooks/useRoles";
 import ActionsList from "./ActionsList";
 
-const AccordionRolePermission = () => {
+const AccordionRolePermission = ({ setSelectedPermissions }) => {
   const [activeAccordionIndex, setActiveAccordionIndex] = useState(null);
   const { permissions } = usePermissions(); // Assuming permissions are fetched here
 
@@ -13,10 +12,22 @@ const AccordionRolePermission = () => {
     );
   };
 
+  const handleSetPermissions = (newPermission) => {
+    setSelectedPermissions((prevPermissions) => {
+      if (prevPermissions.includes(newPermission)) {
+        // If already checked, remove it from the array
+        return prevPermissions.filter((perm) => perm !== newPermission);
+      } else {
+        // Otherwise, add it to the array
+        return [...prevPermissions, newPermission];
+      }
+    });
+  };
+
   return (
     <div className="mt-10 flex w-full flex-col gap-4 md:gap-8">
       {permissions.map((data, index) => (
-        <article key={data._id} className="rounded border border-primary/20">
+        <article key={data._id} className="rounded border border-primary/20 ">
           <div
             className="flex w-full cursor-pointer items-center justify-between gap-2 rounded p-3"
             onClick={() => handleAccordionToggle(index)}
@@ -63,7 +74,13 @@ const AccordionRolePermission = () => {
           >
             <div className="grid grid-cols-2 gap-x-4 gap-y-4 overflow-hidden text-[0.9rem] text-[#424242] md:grid-cols-3 md:gap-y-12">
               {data.actions.map((action, actionIndex) => {
-                return <ActionsList key={actionIndex} id={action._id} action={action.action} />;
+                return (
+                  <ActionsList
+                    key={actionIndex}
+                    action={action}
+                    setPermissions={handleSetPermissions} // Passing setPermissions function
+                  />
+                );
               })}
             </div>
           </div>
