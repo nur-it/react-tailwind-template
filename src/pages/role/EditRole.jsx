@@ -1,18 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BiLoader } from "react-icons/bi";
 import { PiPlus } from "react-icons/pi";
+import { useParams } from "react-router-dom";
 import RoleCreate from "../../components/screens/Role/RoleCreate";
 import RoleHeading from "../../components/screens/Role/RoleHeading";
 import Button from "../../components/ui/Button";
 import useRoles from "../../hooks/useRoles";
 
-const AddNewRole = () => {
+const EditRole = () => {
+  const { id } = useParams(); // Destructure id from params
+
+  const { roles, isLoading, error, handleUpdateRole } = useRoles(); // Use the custom hook
+
+  // Find the role by ID
+  const roleToEdit = roles.find((role) => role._id === id); // Adjust property name based on your role object structure
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedPermissions, setSelectedPermissions] = useState([]);
-  const { isLoading, handleCreateRole, success, error } = useRoles();
 
+  useEffect(() => {
+    if (roleToEdit) {
+      setName(roleToEdit.name || "");
+      setDescription(roleToEdit.description || "");
+      setSelectedPermissions(roleToEdit.permissions || []);
+    }
+  }, [roleToEdit]); // Run this effect when roleToEdit changes
+
+  // Handle loading and error states
   if (isLoading) {
     return (
       <div className="flex min-h-96 items-center justify-center">
@@ -23,28 +39,31 @@ const AddNewRole = () => {
       </div>
     );
   }
+  if (error) return <div>Error: {error}</div>;
+
+  // If the role is not found, handle that case
+  if (!roleToEdit) return <div>Role not found</div>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    handleCreateRole({ name, description, permissions: selectedPermissions });
+    const updatedRole = {
+      description,
+    };
+
+    handleUpdateRole(updatedRole, id);
   };
 
   return (
     <>
       <Helmet>
-        <title>Add New Role | NurAdmin</title>
+        <title>Edit Role | NurAdmin</title>
       </Helmet>
-      <form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-        className="container-fluid p-4 lg:p-10"
-      >
+      <form onSubmit={handleSubmit} className="container-fluid p-4 lg:p-10">
         <div className="flex items-center justify-between gap-2">
           <RoleHeading
             backLink="/admin/settings/role-management"
-            title="Create a role"
+            title="Edit a role"
             subtitle="Define the rights given to the role"
             submitButton={false}
           />
@@ -70,4 +89,4 @@ const AddNewRole = () => {
   );
 };
 
-export default AddNewRole;
+export default EditRole;

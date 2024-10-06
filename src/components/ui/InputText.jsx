@@ -56,6 +56,7 @@ const InputText = React.forwardRef(
             htmlFor={id}
           >
             {label}
+            {required && <span className="text-red-600">*</span>}
           </label>
         )}
 

@@ -11,7 +11,10 @@ const RoleManagement = () => {
         <title>Role Management | NurAdmin</title>
       </Helmet>
       <section className="container-fluid p-4 lg:p-10">
-        <RoleHeading addRoleLink="/admin/settings/users-permissions/roles/new" />
+        <RoleHeading
+          addRoleLink="/admin/settings/users-permissions/roles/new"
+          submitButton={true}
+        />
         <RoleListsTable />
       </section>
     </>

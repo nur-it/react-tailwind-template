@@ -16,6 +16,7 @@ import CheckboxPage from "../pages/components/Checkbox";
 import InputPage from "../pages/components/Input";
 import RadioPage from "../pages/components/Radio";
 import AddNewRole from "../pages/role/AddNewRole";
+import EditRole from "../pages/role/EditRole";
 import RoleManagement from "../pages/role/RoleManagement";
 import ProtectedRoute from "./private.route";
 import DatePickerPage from "../pages/components/DatePicker";
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
       {
         path: "/admin/settings/users-permissions/roles/new",
         element: <AddNewRole />,
+      },
+      {
+        path: "/admin/settings/users-permissions/roles/edit/:id",
+        element: <EditRole />,
       },
     ],
   },
