@@ -45,6 +45,7 @@ const Sidebar = () => {
         { path: "pagination", label: "Pagination" },
         { path: "table", label: "Table" },
         { path: "toggle", label: "Toggle" },
+        { path: "accordion", label: "Accordion" },
       ],
     },
     {

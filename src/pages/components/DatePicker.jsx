@@ -48,8 +48,6 @@ function App() {
         size="large"
         variant="success"
         placeholder="Choose a date"
-        date={date}
-        setDate={setDate}
       />`,
   ];
 
