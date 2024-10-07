@@ -41,24 +41,44 @@ const Checkbox = ({
     setIsChecked(event.target.checked);
   };
   return (
-    <label className="inline-flex cursor-pointer items-center">
-      <input
-        type="checkbox"
-        className="sr-only"
-        checked={isChecked}
-        onChange={handleCheckboxChange}
-        disabled={disabled}
-        {...props}
-      />
-      <span
-        className={cn(
-          checkboxStyles({ size, variant, disabled }),
-          "inline-flex items-center justify-center rounded border bg-primary",
-        )}
-      >
-        {isChecked && <CheckMark className="text-white" />}
-      </span>
-    </label>
+    // <label className="inline-flex cursor-pointer items-center">
+    //   <input
+    //     type="checkbox"
+    //     className="sr-only"
+    //     checked={isChecked}
+    //     onChange={handleCheckboxChange}
+    //     disabled={disabled}
+    //     {...props}
+    //   />
+    // <span
+    //   className={cn(
+    //     checkboxStyles({ size, variant, disabled }),
+    //     "inline-flex items-center justify-center rounded border bg-primary",
+    //   )}
+    // >
+    //   {isChecked && <CheckMark className="text-white" />}
+    // </span>
+    // </label>
+    <div>
+      <label className="inline-flex cursor-pointer items-center">
+        <input
+          type="checkbox"
+          // className="sr-only"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+          disabled={disabled}
+          // {...props}
+        />
+        <span
+          className={cn(
+            checkboxStyles({ size, variant, disabled }),
+            "inline-flex items-center justify-center rounded border bg-primary",
+          )}
+        >
+          {isChecked && <CheckMark className="text-white" />}
+        </span>
+      </label>
+    </div>
   );
 };
 

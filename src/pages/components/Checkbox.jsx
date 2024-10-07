@@ -37,7 +37,8 @@ function App() {
 
   // Code snippets for live preview
   const codeSnippets = [
-    `<Checkbox size="small" variant="default" htmlFor="checkbox" >checkbox</Checkbox>`,
+    // `<Checkbox size="small" variant="default" htmlFor="checkbox" >checkbox</Checkbox>`,
+    `<Checkbox >checkbox</Checkbox>`,
   ];
 
   return (

@@ -19,6 +19,14 @@ import AddNewRole from "../pages/role/AddNewRole";
 import EditRole from "../pages/role/EditRole";
 import RoleManagement from "../pages/role/RoleManagement";
 import ProtectedRoute from "./private.route";
+import DatePickerPage from "../pages/components/DatePicker";
+import TextAreaPage from "../pages/components/TextArea";
+import ImageUploadPage from "../pages/components/ImageUpload";
+import SelectPage from "../pages/components/Select";
+import PaginationPage from "../pages/components/Pagination";
+import TablePage from "../pages/components/Table";
+import ToggleButtonPage from "../pages/components/ToggleButton";
+import AccordionPage from "../pages/components/Accordion";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +103,38 @@ export const router = createBrowserRouter([
       {
         path: "radio",
         element: <RadioPage />,
+      },
+      {
+        path: "date-picker",
+        element: <DatePickerPage />,
+      },
+      {
+        path: "textarea",
+        element: <TextAreaPage />,
+      },
+      {
+        path: "image-upload",
+        element: <ImageUploadPage />,
+      },
+      {
+        path: "select",
+        element: <SelectPage />,
+      },
+      {
+        path: "pagination",
+        element: <PaginationPage />,
+      },
+      {
+        path: "table",
+        element: <TablePage />,
+      },
+      {
+        path: "toggle",
+        element: <ToggleButtonPage />,
+      },
+      {
+        path: "accordion",
+        element: <AccordionPage />,
       },
     ],
   },
