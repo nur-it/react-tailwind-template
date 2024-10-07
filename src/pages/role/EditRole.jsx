@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { BiLoader } from "react-icons/bi";
 import { PiPlus } from "react-icons/pi";
 import { useParams } from "react-router-dom";
-import RoleCreate from "../../components/screens/Role/RoleCreate";
+import EditRolePermissions from "../../components/screens/Role/EditRole";
 import RoleHeading from "../../components/screens/Role/RoleHeading";
 import Button from "../../components/ui/Button";
 import useRoles from "../../hooks/useRoles";
@@ -61,10 +61,12 @@ const EditRole = () => {
     if (name !== initialName) updatedRole.name = name;
     if (description !== initialDescription)
       updatedRole.description = description;
+
+    // If selectedPermissions has changed, extract just the _id values
     if (
       JSON.stringify(selectedPermissions) !== JSON.stringify(initialPermissions)
     ) {
-      updatedRole.permissions = selectedPermissions;
+      updatedRole.permissions = selectedPermissions.map((perm) => perm._id); // Map to an array of _id values
     }
 
     // Call the update function only with the changed fields
@@ -98,7 +100,7 @@ const EditRole = () => {
             <PiPlus color="#fff" /> Save
           </Button>
         </div>
-        <RoleCreate
+        <EditRolePermissions
           setSelectedPermissions={setSelectedPermissions}
           selectedPermissions={selectedPermissions}
           name={name}
