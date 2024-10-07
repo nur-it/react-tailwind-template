@@ -1,9 +1,9 @@
 import React from "react";
 import InputText from "../../ui/InputText";
 import LongTextInput from "../../ui/LongTextInput";
-import AccordionRolePermission from "./AccordionRolePermission";
+import EditAccordionRolePermission from "./EditAccordionRolePermissions";
 
-const RoleCreate = ({
+const EditRolePermissions = ({
   setSelectedPermissions,
   name,
   description,
@@ -51,7 +51,7 @@ const RoleCreate = ({
             <p className="text-sm">
               Only actions bound by a route are listed below.
             </p>
-            <AccordionRolePermission
+            <EditAccordionRolePermission
               setSelectedPermissions={setSelectedPermissions}
               selectedPermissions={selectedPermissions}
             />
@@ -69,4 +69,4 @@ const RoleCreate = ({
   );
 };
 
-export default RoleCreate;
+export default EditRolePermissions;

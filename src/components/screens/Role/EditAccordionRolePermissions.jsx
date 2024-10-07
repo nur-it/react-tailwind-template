@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import usePermissions from "../../../hooks/usepermissions";
-import ActionsList from "./ActionsList";
+import EditActionsList from "./EditActionList";
 
-const AccordionRolePermission = ({
+const EditAccordionRolePermission = ({
   setSelectedPermissions,
   selectedPermissions: selectedActions,
 }) => {
@@ -15,20 +15,25 @@ const AccordionRolePermission = ({
     );
   };
 
-  const handleSetPermissions = (newPermission) => {
+  const handleSetPermissions = (newPermission, isChecked) => {
     setSelectedPermissions((prevPermissions) => {
-      if (prevPermissions.includes(newPermission)) {
-        // If already checked, remove it from the array
-        return prevPermissions.filter((perm) => perm !== newPermission);
+      // Check if the permission is already in the list
+      const permissionExists = prevPermissions.some(
+        (perm) => perm._id === newPermission,
+      );
+
+      if (isChecked) {
+        // Add permission if checked and it does not already exist
+        if (!permissionExists) {
+          return [...prevPermissions, { _id: newPermission }]; // Assuming you want to keep the object structure
+        }
+        return prevPermissions; // Return previous state if it already exists
       } else {
-        // Otherwise, add it to the array
-        return [...prevPermissions, newPermission];
+        // Remove permission if unchecked
+        return prevPermissions.filter((perm) => perm._id !== newPermission);
       }
     });
   };
-
-  console.log("permissions", permissions);
-  console.log("selectedActions", selectedActions);
 
   return (
     <div className="mt-10 flex w-full flex-col gap-4 md:gap-8">
@@ -79,15 +84,14 @@ const AccordionRolePermission = ({
             }`}
           >
             <div className="grid grid-cols-2 gap-x-4 gap-y-4 overflow-hidden text-[0.9rem] text-[#424242] md:grid-cols-3 md:gap-y-12">
-              {data.actions.map((action, actionIndex) => {
-                return (
-                  <ActionsList
-                    key={actionIndex}
-                    action={action}
-                    setPermissions={handleSetPermissions} // Passing setPermissions function
-                  />
-                );
-              })}
+              {data.actions.map((action, actionIndex) => (
+                <EditActionsList
+                  key={actionIndex}
+                  action={action}
+                  setPermissions={handleSetPermissions} // Passing setPermissions function
+                  selectedActions={selectedActions} // Pass selectedActions as a prop
+                />
+              ))}
             </div>
           </div>
         </article>
@@ -96,4 +100,4 @@ const AccordionRolePermission = ({
   );
 };
 
-export default AccordionRolePermission;
+export default EditAccordionRolePermission;
