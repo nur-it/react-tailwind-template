@@ -9,6 +9,7 @@ const RoleCreate = ({
   description,
   setName,
   setDescription,
+  selectedPermissions,
 }) => {
   return (
     <section className="pt-16">
@@ -52,6 +53,7 @@ const RoleCreate = ({
             </p>
             <AccordionRolePermission
               setSelectedPermissions={setSelectedPermissions}
+              selectedPermissions={selectedPermissions}
             />
           </div>
           <div className="bg-secondary/5 p-4 md:col-span-3">

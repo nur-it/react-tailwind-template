@@ -10,21 +10,31 @@ import useRoles from "../../hooks/useRoles";
 
 const EditRole = () => {
   const { id } = useParams(); // Destructure id from params
-
   const { roles, isLoading, error, handleUpdateRole } = useRoles(); // Use the custom hook
 
-  // Find the role by ID
-  const roleToEdit = roles.find((role) => role._id === id); // Adjust property name based on your role object structure
+  const roleToEdit = roles.find((role) => role._id === id); // Find the role by ID
 
+  // States for storing current form values
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [selectedPermissions, setSelectedPermissions] = useState([]);
 
+  // States for storing the original (initial) values
+  const [initialName, setInitialName] = useState("");
+  const [initialDescription, setInitialDescription] = useState("");
+  const [initialPermissions, setInitialPermissions] = useState([]);
+
+  // Set form values and store the initial values when roleToEdit is available
   useEffect(() => {
     if (roleToEdit) {
       setName(roleToEdit.name || "");
       setDescription(roleToEdit.description || "");
       setSelectedPermissions(roleToEdit.permissions || []);
+
+      // Store the initial values for comparison later
+      setInitialName(roleToEdit.name || "");
+      setInitialDescription(roleToEdit.description || "");
+      setInitialPermissions(roleToEdit.permissions || []);
     }
   }, [roleToEdit]); // Run this effect when roleToEdit changes
 
@@ -40,18 +50,29 @@ const EditRole = () => {
     );
   }
   if (error) return <div>Error: {error}</div>;
-
-  // If the role is not found, handle that case
   if (!roleToEdit) return <div>Role not found</div>;
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updatedRole = {
-      description,
-    };
+    const updatedRole = {};
 
-    handleUpdateRole(updatedRole, id);
+    // Compare each field with its initial value and only include it if it has changed
+    if (name !== initialName) updatedRole.name = name;
+    if (description !== initialDescription)
+      updatedRole.description = description;
+    if (
+      JSON.stringify(selectedPermissions) !== JSON.stringify(initialPermissions)
+    ) {
+      updatedRole.permissions = selectedPermissions;
+    }
+
+    // Call the update function only with the changed fields
+    if (Object.keys(updatedRole).length > 0) {
+      handleUpdateRole(updatedRole, id);
+    } else {
+      console.log("No fields have changed.");
+    }
   };
 
   return (
@@ -79,6 +100,7 @@ const EditRole = () => {
         </div>
         <RoleCreate
           setSelectedPermissions={setSelectedPermissions}
+          selectedPermissions={selectedPermissions}
           name={name}
           description={description}
           setName={setName}

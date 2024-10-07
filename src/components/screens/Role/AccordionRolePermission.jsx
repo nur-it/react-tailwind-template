@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import usePermissions from "../../../hooks/usepermissions";
 import ActionsList from "./ActionsList";
 
-const AccordionRolePermission = ({ setSelectedPermissions }) => {
+const AccordionRolePermission = ({
+  setSelectedPermissions,
+  selectedPermissions: selectedActions,
+}) => {
   const [activeAccordionIndex, setActiveAccordionIndex] = useState(null);
   const { permissions } = usePermissions(); // Assuming permissions are fetched here
 
@@ -23,6 +26,9 @@ const AccordionRolePermission = ({ setSelectedPermissions }) => {
       }
     });
   };
+
+  console.log("permissions", permissions);
+  console.log("selectedActions", selectedActions);
 
   return (
     <div className="mt-10 flex w-full flex-col gap-4 md:gap-8">
