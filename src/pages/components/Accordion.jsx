@@ -1,47 +1,81 @@
 import React from "react";
-import Button from "../../components/ui/Button";
 import Accordion from "../../components/ui/Accordion";
 import ComponentLayoutProvider from "../../layouts/ComponentLayoutProvider";
 
 const AccordionPage = () => {
   const markdown = `
-### Button
-
-The Button component is a versatile and reusable UI element built using React and Tailwind CSS, with \`class-variance-authority (cva)\` for managing variants.
-
-#### Usage
-
-\`\`\`jsx
-import Button from "./components/ui/Button";
-
-function App() {
-  return (
-    <Button variant="primary" size="medium">
-      Click Me
-    </Button>
-  );
-}
-\`\`\`
-
-### Props
-
-| Prop Name   | Type      | Default     | Description                                                                         | Required |
-| ----------- | --------- | ----------- | ----------------------------------------------------------------------------------- | -------- |
-| \`children\`  | ReactNode | \`null\`      | The content inside the button.                                                      | Yes      |
-| \`className\` | string    | \`""\`        | Additional custom classes for the button.                                           | No       |
-| \`variant\`   | string    | \`"primary"\` | The button variant. Options: \`"primary"\`, \`"secondary"\`, \`"danger"\`.                | No       |
-| \`size\`      | string    | \`"medium"\`  | The button size. Options: \`"small"\`, \`"medium"\`, \`"large"\`.                         | No       |
-| \`fullWidth\` | boolean   | \`false\`     | If true, the button will take up the full width of its container.                   | No       |
-| \`disabled\`  | boolean   | \`false\`     | If true, the button will be disabled.                                               | No       |
-| \`loading\`   | boolean   | \`false\`     | If true, the button will show a loading spinner and be disabled.                    | No       |
-| \`icon\`      | object    | \`null\`      | An object containing an Icon component and float direction (\`"left"\` or \`"right"\`). | No       |
-| \`type\`      | string    | \`"button"\`  | The button type attribute (\`"button"\`, \`"submit"\`, \`"reset"\`).                      | No       |
-`;
+  ### Accordion
+  
+  The Accordion component is a versatile and reusable UI element built using React and Tailwind CSS, with \`class-variance-authority (cva)\` for managing variants.
+  
+  #### Usage
+  
+  \`\`\`jsx
+  import Accordion from "./components/ui/Accordion";
+  
+  function App() {
+    return (
+      <div>
+        <Accordion 
+          question="What is React?" 
+          answer="React is a JavaScript library for building user interfaces."
+          size="medium"
+          variant="default"
+          Icon={MyIconComponent}
+        />
+      </div>
+    );
+  }
+  \`\`\`
+  
+  ### Dynamic Mode Example
+  
+  \`\`\`jsx
+  import Accordion from "./components/ui/Accordion";
+  
+  function App() {
+    const data = [
+      { id: '1', index: 0, question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.' },
+      { id: '2', index: 1, question: 'What is Next.js?', answer: 'Next.js is a React framework for server-side rendering.' }
+    ];
+  
+    return (
+      <div>
+        <Accordion 
+          dynamic={true} 
+          data={data}
+          size="large"
+          variant="default"
+          Icon={MyIconComponent}
+        />
+      </div>
+    );
+  }
+  \`\`\`
+  
+  ### Props
+  
+  | Prop Name           | Type      | Default      | Description                                                                  | Required |
+  | ------------------- | --------- | ------------ | ---------------------------------------------------------------------------- | -------- |
+  | \`question\`         | string    | -            | The question text for the static accordion mode.                             | No       |
+  | \`answer\`           | string    | -            | The answer text for the static accordion mode.                               | No       |
+  | \`dynamic\`          | boolean   | \`false\`     | If true, enables dynamic mode for rendering multiple accordion items.         | No       |
+  | \`data\`             | array     | -            | Array of objects for dynamic mode with \`id\`, \`index\`, \`question\`, and \`answer\`. | Yes, if dynamic |
+  | \`size\`             | string    | \`"medium"\`  | The size of the accordion. Options: \`"small"\`, \`"medium"\`, \`"large"\`.    | No       |
+  | \`variant\`          | string    | \`"default"\` | The accordion variant. Options: \`"default"\`, \`"disabled"\`.                | No       |
+  | \`disabled\`         | boolean   | \`false\`     | If true, disables the accordion and applies appropriate styles.               | No       |
+  | \`className\`        | string    | -            | Custom class name to override or extend accordion styles.                     | No       |
+  | \`questionClassName\`| string    | -            | Custom class name for styling the question text.                              | No       |
+  | \`ansClassName\`     | string    | -            | Custom class name for styling the answer text.                                | No       |
+  | \`Icon\`             | React.ComponentType | - | A React component used as an icon next to the question.                     | No       |
+  | \`...props\`         | object    | -            | Additional props to pass to the accordion \`<li>\` element.                   | No       |
+  
+  `;
 
   // Code snippets for live preview
   const codeSnippets = [
     // `<Button variant="secondary" size="large" loading={true}>Save Changes</Button>`,
-    `<Accordion question ={"question1?"} answer={"ans1"}></Accordion>`,
+    `<Accordion question ={"What is React?"} answer={"React is a JavaScript library for building user interfaces."} Icon={'MyIconComponent'}/>`,
   ];
 
   return (
