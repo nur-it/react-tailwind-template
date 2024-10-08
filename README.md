@@ -1343,6 +1343,74 @@ function App() {
 
 This will render a large toggle button that is initially off (unchecked) and logs "Toggled!" to the console when clicked.
 
+
+
+  ### Accordion
+  
+  The Accordion component is a versatile and reusable UI element built using React and Tailwind CSS, with \`class-variance-authority (cva)\` for managing variants.
+  
+  #### Usage
+  
+  ```jsx
+  import Accordion from "./components/ui/Accordion";
+  
+  function App() {
+    return (
+      <div>
+        <Accordion 
+          question="What is React?" 
+          answer="React is a JavaScript library for building user interfaces."
+          size="medium"
+          variant="default"
+          Icon={MyIconComponent}
+        />
+      </div>
+    );
+  }
+  ```
+  
+  ### Dynamic Mode Example
+  
+  ```jsx
+  import Accordion from "./components/ui/Accordion";
+  
+  function App() {
+    const data = [
+      { id: '1', index: 0, question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.' },
+      { id: '2', index: 1, question: 'What is Next.js?', answer: 'Next.js is a React framework for server-side rendering.' }
+    ];
+  
+    return (
+      <div>
+        <Accordion 
+          dynamic={true} 
+          data={data}
+          size="large"
+          variant="default"
+          Icon={MyIconComponent}
+        />
+      </div>
+    );
+  }
+  ```
+  
+  ### Props
+  
+  | Prop Name           | Type      | Default      | Description                                                                  | Required |
+  | ------------------- | --------- | ------------ | ---------------------------------------------------------------------------- | -------- |
+  | `question`         | string    | -            | The question text for the static accordion mode.                             | No       |
+  | `answer`           | string    | -            | The answer text for the static accordion mode.                               | No       |
+  | `dynamic`          | boolean   | `false`     | If true, enables dynamic mode for rendering multiple accordion items.         | No       |
+  | `data`             | array     | -            | Array of objects for dynamic mode with `id`, `index`, `question`, and `answer`. | Yes, if dynamic |
+  | `size`             | string    | `"medium"`  | The size of the accordion. Options: `"small"`, `"medium"`, `"large"`.    | No       |
+  | `variant`          | string    | `"default"` | The accordion variant. Options: `"default"`, `"disabled"`.                | No       |
+  | `disabled`         | boolean   | `false`     | If true, disables the accordion and applies appropriate styles.               | No       |
+  | `className`        | string    | -            | Custom class name to override or extend accordion styles.                     | No       |
+  | `questionClassName`| string    | -            | Custom class name for styling the question text.                              | No       |
+  | `ansClassName`     | string    | -            | Custom class name for styling the answer text.                                | No       |
+  | `Icon`             | React.ComponentType | - | A React component used as an icon next to the question.                     | No       |
+  | `...props`         | object    | -            | Additional props to pass to the accordion `<li>` element.                   | No       |
+
 ## License
 
 This project is licensed under the [MIT License](https://github.com/nur-it/react-tailwind-boilerplate?tab=MIT-1-ov-file).
