@@ -81,14 +81,12 @@ const AccordionPage = () => {
   const codeSnippets = [
     // `<Button variant="secondary" size="large" loading={true}>Save Changes</Button>`,
     `<Accordion question ={"What is React?"} answer={"React is a JavaScript library for building user interfaces."}  />`,
-    `   <Accordion 
-    question ={"What is React?"}  
-    answer={"React is a JavaScript library for building user interfaces."}  
+    `   <Accordion  
     dynamic={true} 
     variant='secondary'
     listClassName="gap-y-0"
     data={
-      accordion=[{ id: '1',  question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.' },{ id: '2', question: 'What is Next.js?', answer: 'Next.js is a React framework for server-side rendering.' },{ id: '3', question: 'What is TypeScript?', answer: 'TypeScript is a superset of JavaScript that adds static typing to the language.' }]
+      accordion=[{ id: '1',  question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.' },{ id: '2', question: 'What is Next.js?', answer: 'Next.js is a React framework for server-side rendering.' },{ id: '3', question: 'What is TypeScript?', answer: 'TypeScript is a superset of JavaScript that adds static typing to the language.  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis obcaecati libero quae soluta voluptatum iure eaque quia porro architecto quidem, fugit assumenda excepturi id praesentium magnam repellat reprehenderit sunt nesciunt saepe velit nobis! Aliquam, ullam. Enim, fugit dolore laudantium soluta asperiores, veniam blanditiis animi et reiciendis quidem, suscipit facere maxime.  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis obcaecati libero quae soluta voluptatum iure eaque quia porro architecto quidem, fugit assumenda excepturi id praesentium magnam repellat reprehenderit sunt nesciunt saepe velit nobis! Aliquam, ullam. Enim, fugit dolore laudantium soluta asperiores, veniam blanditiis animi et reiciendis quidem, suscipit facere maxime.  Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis obcaecati libero quae soluta voluptatum iure eaque quia porro architecto quidem, fugit assumenda excepturi id praesentium magnam repellat reprehenderit sunt nesciunt saepe velit nobis! Aliquam, ullam. Enim, fugit dolore laudantium soluta asperiores, veniam blanditiis animi et reiciendis quidem, suscipit facere maxime.' }]
       }
       />`,
       `<Accordion question ={"What is React?"} answer={"React is a JavaScript library for building user interfaces."} customIcon={true} Icon={'MyIconComponent'} />`,

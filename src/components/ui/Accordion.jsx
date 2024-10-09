@@ -5,7 +5,7 @@ import { FaAngleDown } from "react-icons/fa6";
 import { GiNuclearBomb } from "react-icons/gi";
 
 const accordionStyles = cva(
-  "py-4 px-4 text-black  border-black  w-full cursor-pointer",
+  "py-4 px-4 text-black  border-black  w-full cursor-pointer max-h-[250px] overflow-hidden",
   {
     variants: {
       size: {
@@ -103,11 +103,11 @@ const Accordion = ({
             <div
               className={`grid overflow-hidden transition-all duration-300 ease-in-out ${
                 dynamicActiveAccordion === item.id
-                  ? "max-h-[1000px] grid-rows-[1fr] opacity-100"
+                  ? "max-h-[250px] grid-rows-[1fr] opacity-100"
                   : "max-h-0 grid-rows-[0fr] opacity-0"
               }`}
             >
-              <div className="overflow-hidden">
+              <div className="overflow-y-scroll">
                 <p className={cn(ansStyle(), ansClassName)}>{item.answer}</p>
               </div>
             </div>
