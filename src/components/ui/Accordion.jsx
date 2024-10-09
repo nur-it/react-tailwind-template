@@ -1,10 +1,11 @@
 import { cva } from "class-variance-authority";
 import React from "react";
 import cn from "../../lib/cn";
-
+import { FaAngleDown } from "react-icons/fa6";
+import { GiNuclearBomb } from "react-icons/gi";
 
 const accordionStyles = cva(
-  "py-4 px-4 text-black border border-black rounded-xl w-full cursor-pointer",
+  "py-4 px-4 text-black  border-black  w-full cursor-pointer",
   {
     variants: {
       size: {
@@ -13,7 +14,8 @@ const accordionStyles = cva(
         large: "w-[1024px] ",
       },
       variant: {
-        default: "bg-gray-200 border-gray-300",
+        default: "bg-gray-200 border-gray-300 rounded-xl border",
+        secondary: "bg-white border-black border-b",
         disabled: "bg-gray-300 border-gray-400 cursor-not-allowed",
       },
       disabled: {
@@ -25,8 +27,9 @@ const accordionStyles = cva(
     },
   },
 );
-const qustionsStyles = cva("font-semibold text-lg");
+const qustionsStyles = cva("font-semibold text-lg block");
 const ansStyle = cva("text-base");
+const listStyle = cva("flex flex-col gap-y-6");
 
 const Accordion = ({
   question,
@@ -39,8 +42,11 @@ const Accordion = ({
   className,
   questionClassName,
   ansClassName,
+  listClassName,
+  enableIndex = true,
+  customIcon = false,
   Icon,
-  props
+  props,
 }) => {
   // const [dynamicActiveAccordion, setDynamicActiveAccordion] = React.useState(data[0]?.id);
   const [dynamicActiveAccordion, setDynamicActiveAccordion] =
@@ -53,29 +59,45 @@ const Accordion = ({
       setDynamicActiveAccordion(id); // Otherwise, open the clicked one
     }
   };
-  
+
   return (
-    <ul className="flex flex-col gap-y-6">
+    <ul className={cn(listStyle(),listClassName)}>
       {dynamic ? (
-        data.map((item) => (
+        data.map((item, index) => (
           <li
-            key={item.index}
+            key={index}
             onClick={() => toggleAccordion(item.id)}
-            className={cn(accordionStyles({size, variant, disabled}), className)}
+            className={cn(
+              accordionStyles({ size, variant, disabled }),
+              className,
+            )}
             {...props}
           >
             <div className="flex items-center justify-between">
-              <div>
-                <span className={cn(qustionsStyles(),questionClassName)}>{item.question}</span>
+              <div className="flex items-center gap-x-3">
+                {enableIndex && (
+                  <span className={cn(qustionsStyles(), questionClassName)}>
+                    {index + 1}.
+                  </span>
+                )}
+                <span className={cn(qustionsStyles(), questionClassName)}>
+                  {item.question}
+                </span>
               </div>
               <div>
-                <span>
+                {customIcon ? (
                   <Icon
                     className={`transform transition-transform duration-300 ${
                       dynamicActiveAccordion === item.id ? "rotate-180" : ""
                     }`}
                   />
-                </span>
+                ) : (
+                  <FaAngleDown
+                    className={`transform transition-transform duration-300 ${
+                      dynamicActiveAccordion === item.id ? "rotate-180" : ""
+                    }`}
+                  />
+                )}
               </div>
             </div>
             <div
@@ -86,7 +108,7 @@ const Accordion = ({
               }`}
             >
               <div className="overflow-hidden">
-                <p className={cn(ansStyle(),ansClassName)}>{item.answer}</p>
+                <p className={cn(ansStyle(), ansClassName)}>{item.answer}</p>
               </div>
             </div>
           </li>
@@ -94,20 +116,36 @@ const Accordion = ({
       ) : (
         <li
           onClick={() => setActiveAccordion(!activeAccordion)}
-          className={cn(accordionStyles({size, variant, disabled}), className)}
+          className={cn(
+            accordionStyles({ size, variant, disabled }),
+            className,
+          )}
         >
           <div className="flex items-center justify-between">
             <div>
-              <span className={cn(qustionsStyles(),questionClassName)}>{question}</span>
+              <span className={cn(qustionsStyles(), questionClassName)}>
+                {question}
+              </span>
             </div>
             <div>
-
-                <Icon
+              {customIcon ? (
+                // <Icon
+                //   className={`transform transition-transform duration-300 ${
+                //     activeAccordion ? "rotate-180" : ""
+                //   }`}
+                // />
+                <GiNuclearBomb
                   className={`transform transition-transform duration-300 ${
                     activeAccordion ? "rotate-180" : ""
                   }`}
                 />
-
+              ) : (
+                <FaAngleDown
+                  className={`transform transition-transform duration-300 ${
+                    activeAccordion ? "rotate-180" : ""
+                  }`}
+                />
+              )}
             </div>
           </div>
           <div
@@ -118,7 +156,7 @@ const Accordion = ({
             }`}
           >
             <div className="overflow-hidden">
-              <p className={cn(ansStyle(),ansClassName)}>{answer}</p>
+              <p className={cn(ansStyle(), ansClassName)}>{answer}</p>
             </div>
           </div>
         </li>
