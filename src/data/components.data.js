@@ -89,4 +89,10 @@ export const componentLists = [
       "This will render a large success alert with an icon and a close button.",
     link: "/components/accordion",
   },
+  {
+    title: "Filter",
+    description:
+      "This will render a large success alert with an icon and a close button.",
+    link: "/components/filter",
+  },
 ];

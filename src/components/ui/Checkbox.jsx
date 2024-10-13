@@ -4,7 +4,8 @@ import cn from "../../lib/cn";
 import CheckMark from "../shared/svg/CheckMark";
 
 const checkboxStyles = cva(
-  "relative inline-flex items-center cursor-pointer transition duration-300 ease-in-out",
+  "relative inline-flex items-center cursor-pointer transition duration-300 ease-in-out  ",
+  // "inline-flex items-center justify-center rounded border bg-primary",
   {
     variants: {
       size: {
@@ -33,6 +34,7 @@ const Checkbox = ({
   size = "medium",
   variant = "default",
   disabled = false,
+  children,
   ...props
 }) => {
   const [isChecked, setIsChecked] = React.useState(checked);
@@ -60,14 +62,14 @@ const Checkbox = ({
     // </span>
     // </label>
     <div>
-      <label className="inline-flex cursor-pointer items-center">
+      <label className="inline-flex cursor-pointer items-center gap-x-1.5">
         <input
           type="checkbox"
-          // className="sr-only"
+          className="absolute"
           checked={isChecked}
           onChange={handleCheckboxChange}
           disabled={disabled}
-          // {...props}
+          {...props}
         />
         <span
           className={cn(
@@ -77,6 +79,7 @@ const Checkbox = ({
         >
           {isChecked && <CheckMark className="text-white" />}
         </span>
+        <span>{children}</span>
       </label>
     </div>
   );

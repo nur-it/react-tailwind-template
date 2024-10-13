@@ -31,6 +31,9 @@ body {
 .container_fluid {
   @apply mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10;
 }
+.active{
+  @apply text-white bg-menuHover rounded-md pl-5
+}
 
 .markdown h3 {
   @apply mb-4 mt-12 text-2xl font-semibold;

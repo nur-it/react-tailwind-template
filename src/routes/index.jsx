@@ -27,6 +27,7 @@ import PaginationPage from "../pages/components/Pagination";
 import TablePage from "../pages/components/Table";
 import ToggleButtonPage from "../pages/components/ToggleButton";
 import AccordionPage from "../pages/components/Accordion";
+import FilterPage from "../pages/components/Filter";
 
 export const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ export const router = createBrowserRouter([
       {
         path: "accordion",
         element: <AccordionPage />,
+      },
+      {
+        path: "filter",
+        element: <FilterPage />,
       },
     ],
   },
