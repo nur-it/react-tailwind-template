@@ -4,14 +4,17 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineViewGrid } from "react-icons/hi";
 import { MdAdminPanelSettings, MdKeyboardArrowDown } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import logo from "../assets/images/logo.svg";
 import { useSidebar } from "../contexts/SidebarContext";
 
 const Sidebar = () => {
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [activeMenuColor, setActiveMenuColor] = useState(null);
+  const [activeMenu, setActiveMenu] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
   const { activeSidebar, toggleSidebar } = useSidebar();
+  // const param = useParams()
+  // console.log(param);
 
   // Sidebar menu items with icon components and sub-items (if any)
   const menuItems = [
@@ -46,6 +49,7 @@ const Sidebar = () => {
         { path: "table", label: "Table" },
         { path: "toggle", label: "Toggle" },
         { path: "accordion", label: "Accordion" },
+        { path: "filter", label: "Filter" },
       ],
     },
     {
@@ -63,8 +67,11 @@ const Sidebar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleMenuClick = (menu) => {
-    setActiveMenu(menu === activeMenu ? null : menu);
+  const handleMenuClick = () => {
+    console.log(activeMenu);
+
+    // setActiveMenuColor(menu === activeMenuColor ? null : menu);
+    setActiveMenu(!activeMenu);
   };
 
   const handleHideSidebar = () => {
@@ -123,17 +130,17 @@ const Sidebar = () => {
                         type="button"
                         onClick={() => handleMenuClick(menu.label)}
                         className={`group relative flex w-full items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-white duration-300 ease-in-out hover:bg-menuHover ${
-                          activeMenu === menu.label ? "bg-menuHover" : ""
+                          activeMenuColor === menu.label ? "bg-menuHover" : ""
                         }`}
                       >
                         {menu.icon}
                         {menu.label}
                         <MdKeyboardArrowDown
-                          className={`ml-auto text-xl ${activeMenu === menu.label ? "rotate-180" : ""}`}
+                          className={`ml-auto text-xl duration-300 ${activeMenu  ? "rotate-180" : ""}`}
                         />
                       </button>
-                      {activeMenu === menu.label && (
-                        <ul className="flex flex-col gap-2.5 pl-10">
+                      {/* {activeMenu === menu.label && (
+                        <ul className="flex flex-col gap-2.5 pl-10 my-3">
                           {menu.subItems.map((subItem, subIndex) => (
                             <li key={subIndex} onClick={handleHideSidebar}>
                               <Link
@@ -145,7 +152,30 @@ const Sidebar = () => {
                             </li>
                           ))}
                         </ul>
-                      )}
+                      )} */}
+
+                      <ul
+                        onClick={(e) => {
+                          e.stopPropagation(); // Stop click event from bubbling up
+                        }}
+                        className={`grid gap-1.5 overflow-y-scroll pl-10 transition-all duration-300 ease-in-out ${
+                          activeMenu
+                            ? "my-2.5 max-h-[500px] grid-rows-[1fr] opacity-100"
+                            : "max-h-0 grid-rows-[0fr] opacity-0"
+                        } `}
+                      >
+                        {menu.subItems.map((subItem, subIndex) => (
+                          <li key={subIndex} onClick={handleHideSidebar}>
+                            <NavLink
+                              to={`/components/${subItem.path}`}
+                              className={`text-md group relative flex items-center overflow-y-scroll px-1 py-0.5   font-normal text-subMenu/50 duration-300 ease-in-out w-full  hover:text-white hover:pl-5 hover:bg-menuHover rounded-md`}
+                            >
+                              {subItem.label}
+                              
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </li>
