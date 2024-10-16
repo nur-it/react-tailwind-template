@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vs } from "react-syntax-highlighter/dist/esm/styles/prism"; // VS Code-like theme
 import remarkGfm from "remark-gfm";
+import { IoReloadSharp } from "react-icons/io5";
 
 const ComponentLayoutProvider = ({
   markdown,
@@ -12,6 +13,7 @@ const ComponentLayoutProvider = ({
   componentScope,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [seed, setSeed] = useState(1);
 
   return (
     <div className="mt-6">
@@ -65,19 +67,35 @@ const ComponentLayoutProvider = ({
               <LiveProvider code={codeSnippet} scope={componentScope}>
                 <div className="flex flex-col md:flex-row">
                   <div className="w-full bg-gray-800 p-4 text-white md:w-1/2">
-                    <div className="relative">
+                    <div
+                      key={seed}
+                      className="group relative"
+                      onMouseLeave={() => setCopied(false)}
+                    >
                       <h5 className="mb-2 font-bold">Editor</h5>
-                      <CopyToClipboard
-                        text={codeSnippet}
-                        onCopy={() => setCopied(true)}
-                      >
-                        <button
+                      <div className="absolute right-2 top-0 flex gap-x-6">
+                        <CopyToClipboard
+                          text={codeSnippet}
+                          onCopy={() => setCopied(true)}
+                        >
+                          {/* <button
                           className="absolute right-2 top-2 rounded bg-gray-200 px-2 py-1 font-bold text-gray-800 opacity-0 transition hover:bg-gray-300"
                           onMouseLeave={() => setCopied(false)}
                         >
                           {copied ? "Copied!" : "Copy"}
+                        </button> */}
+                          <button
+                            className="rounded bg-gray-200 px-2 py-1 font-bold text-gray-800 opacity-0 transition hover:bg-gray-300 group-hover:opacity-100"
+                            // onMouseLeave={() => setCopied(false)}
+                          >
+                            {copied ? "Copied!" : "Copy"}
+                          </button>
+                        </CopyToClipboard>
+                        {/* <button onClick={()=>window.location.reload()}><IoReloadSharp /></button> */}
+                        <button onClick={() => setSeed(Math.random())}>
+                          <IoReloadSharp />
                         </button>
-                      </CopyToClipboard>
+                      </div>
                       <LiveEditor className="rounded bg-gray-800 p-2 text-white" />
                     </div>
                   </div>
