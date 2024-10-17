@@ -40,6 +40,7 @@ const InputText = React.forwardRef(
       placeholder,
       size = "medium", // Default size variant
       className, // Additional className
+      value,
       ...props
     },
     ref,
@@ -69,6 +70,7 @@ const InputText = React.forwardRef(
           className={cn(inputStyles({ variant, size }), className)} // Apply dynamic styles
           {...props}
           required={required}
+          value={value}
         />
 
         {fieldError && (

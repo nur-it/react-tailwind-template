@@ -39,6 +39,7 @@ const SignIn = () => {
                         type="email"
                         error={errors.email}
                         placeholder="Enter your email"
+                        value = {'defaultsuperadmin@system.com'}
                         required
                       />
                     </div>
@@ -50,6 +51,7 @@ const SignIn = () => {
                         type="password"
                         error={errors.password}
                         placeholder="Enter your password"
+                        value={'system404'}
                         required
                       />
                     </div>
